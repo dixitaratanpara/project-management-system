@@ -1,4 +1,120 @@
-//register
-const registerUser= async(req,res)=>{
-    
+import User from "../models/User.js";
+import bcrypt from "bcrypt";
+
+//register user
+export const registerUser = async (req, res) => {
+
+    try {
+
+        const { name, email, password } = req.body;
+
+        if (!name || !email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "all felid are required",
+            });
+        }
+
+        //check existing user
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({
+                success: false,
+                message: "user is alredy registred",
+            });
+        }
+
+        //hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+
+        //add user in database 
+        const user = await User.create({
+            name,
+            email,
+            password: hashedPassword,
+        });
+
+
+        //responce
+        const userResopnce = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            // avatar: user.avatar,
+            // createAt: user.createAt,
+            // updateAt: user.updateAt,
+        };
+
+        return res.status(201).json({
+            success: true,
+            message: "ragistred success",
+            user: userResopnce,
+        });
+    }
+    catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Intaernal server error ",
+        });
+    }
+}
+
+
+//login user
+export const loginUser = async (req, res) => {
+    try {
+
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "all felid are required",
+            });
+        }
+
+        // check user
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "wrong email or password",
+            });
+        }
+
+        //match password
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordMatch) {
+            return res.status(400).json({
+                success: false,
+                message: "wrong email or password ",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Login success",
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                // role: user.role,
+                // avatar: user.avatar,
+            }
+        });
+    }
+    catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Intaernal server error ",
+        });
+    }
 }
