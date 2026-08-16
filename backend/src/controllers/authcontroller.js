@@ -99,11 +99,11 @@ export const loginUser = async (req, res) => {
         }
 
         //generate token
-        const token= jwt.sign({
-             id:user._id
-            },
-            process.env.JWT_SECRET,{
-            expiresIn:"7d"
+        const token = jwt.sign({
+            id: user._id
+        },
+            process.env.JWT_SECRET, {
+            expiresIn: "7d"
         }
         );
 
@@ -130,3 +130,29 @@ export const loginUser = async (req, res) => {
         });
     }
 }
+
+//get profile
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
