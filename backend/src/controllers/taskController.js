@@ -35,6 +35,17 @@ export const createTask = async (req, res) => {
       }
     }
 
+    const isMember = projectExists.members.some(
+      (member) => member.toString() === assignedTo
+    );
+
+    if (!isMember) {
+      return res.status(400).json({
+        success: false,
+        message: "Assigned user is not a project member",
+      });
+    }
+
     const task = await Task.create({
       title,
       description,
@@ -114,34 +125,85 @@ export const getTask = async (req, res) => {
   }
 };
 
-// Update task
+//update task
 export const updateTask = async (req, res) => {
   try {
     const { title, description, status, priority, assignedTo } = req.body;
 
-    const task = await Task.findByIdAndUpdate(
-      req.params.id,
-      {
-        title,
-        description,
-        status,
-        priority,
-        assignedTo: assignedTo || null,
-      },
-      {
-        new: true,
-        runValidators: true,
-      }
-    )
-      .populate("project", "name")
-      .populate("assignedTo", "name email")
-      .populate("createdBy", "name email");
+       const task = await Task.findById(req.params.id);
 
     if (!task) {
       return res.status(404).json({
         success: false,
         message: "Task not found",
       });
+    }
+    if (assignedTo) {
+      const userExists = await User.findById(assignedTo);
+
+      if (!userExists) {
+        return res.status(404).json({
+          success: false,
+          message: "Assigned user not found",
+        });
+      }
+
+      const project = await Project.findById(task.project);
+
+      const isMember = project.members.some(
+        (member) => member.toString() === assignedTo
+      );
+
+      if (!isMember) {
+        return res.status(400).json({
+          success: false,
+          message: "Assigned user is not a project member",
+        });
+      }
+
+    // const task = await Task.findByIdAndUpdate(
+    //   req.params.id,
+    //   {
+    //     title,
+    //     description,
+    //     status,
+    //     priority,
+    //     assignedTo: assignedTo || null,
+    //   },
+    //   {
+    //     new: true,
+    //     runValidators: true,
+    //   }
+    // )
+    //   .populate("project", "name")
+    //   .populate("assignedTo", "name email")
+    //   .populate("createdBy", "name email");
+
+    // if (!task) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     message: "Task not found",
+    //   });
+    // }
+    
+  //Update task
+    task.title = title ?? task.title;
+    task.description = description ?? task.description;
+    task.status = status ?? task.status;
+    task.priority = priority ?? task.priority;
+
+    if (assignedTo !== undefined) {
+      task.assignedTo = assignedTo || null;
+    }
+
+    await task.save();
+
+    // Get populated task
+    await task.populate("project", "name");
+    await task.populate("assignedTo", "name email");
+    await task.populate("createdBy", "name email");
+
+ 
     }
 
     return res.status(200).json({
@@ -159,7 +221,7 @@ export const updateTask = async (req, res) => {
   }
 };
 
-// Delete task
+//delete task
 export const deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
