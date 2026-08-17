@@ -1,4 +1,5 @@
 import Project from "../models/Project";
+import User from "../models/User";
 
 //create project
 export const createProject = async (req, res) => {
@@ -165,5 +166,144 @@ export const deleteProject = async (req, res) => {
 
     }
 
+
+}
+
+//add member to project
+export const addMember = async (req, res) => {
+    try {
+        const { userId } = req.body;
+
+        // if(!userId){
+        //       return res.status(404).json({
+        //         success: false,
+        //         message: "User ID not found",
+        //     });
+        // }
+
+        const project = await Project.findById(req.params.id);
+
+        if (!project) {
+            return res.status(404).json({
+                success: false,
+                message: "Project not found",
+            });
+        }
+
+        const userExists = await User.findById(userId);
+
+        if (!userExists) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        if (project.members.includes(userId)) {
+            return res.status(400).json({
+                success: false,
+                message: "User is already a project member",
+            });
+        }
+
+        project.members.push(userId);
+
+        await project.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Member added successfully",
+            project,
+        });
+
+
+    }
+    catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
+    }
+}
+
+//get project member 
+export const getProjectMembers = async (req, res) => {
+    try {
+        const project = await Project.findById(req.params.id).populate("members", "name email");
+        if (!project) {
+            return res.status(404).json({
+                success: false,
+                message: "Project not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            members: project.members,
+        });
+    }
+    catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+}
+
+//remove member
+export const removeMember = async (req, res) => {
+    try {
+
+        const { userId } = req.body;
+
+        if (!userId) {
+            return res.status(400).json({
+                success: false,
+                message: "User ID is required",
+            });
+        }
+
+        const project = await Project.findById(req.params.id);
+
+        if (!project) {
+            return res.status(404).json({
+                success: false,
+                message: "Project not found",
+            });
+        }
+
+        const memberExists = project.members.some((member) => member.toString() === useId);
+
+        if (!memberExists) {
+            return res.status(404).json({
+                success: false,
+                message: "User is not a project member",
+            });
+
+        }
+        project.members = project.members.filter(
+            (member) => member.toString() !== userId
+        );
+
+        await project.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Member removed successfully",
+            project,
+        });
+    }
+    catch (error) {
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
 
 }
