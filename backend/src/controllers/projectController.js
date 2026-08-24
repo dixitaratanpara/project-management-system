@@ -1,5 +1,5 @@
-import Project from "../models/Project";
-import User from "../models/User";
+import Project from "../models/Project.js";
+import User from "../models/User.js";
 
 //create project
 export const createProject = async (req, res) => {
@@ -41,8 +41,8 @@ export const createProject = async (req, res) => {
 //get all project
 export const getProjects = async (req, res) => {
     try {
-        const project = await Project.find()
-            .populate("CreatedBy", "name email")
+        const projects = await Project.find()
+            .populate("createdBy", "name email")
             .sort({ createdAt: -1 });
 
         return res.status(200).json({

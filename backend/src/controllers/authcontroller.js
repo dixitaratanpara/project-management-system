@@ -100,7 +100,8 @@ export const loginUser = async (req, res) => {
 
         //generate token
         const token = jwt.sign({
-            id: user._id
+            id: user._id,
+            role: user.role,
         },
             process.env.JWT_SECRET, {
             expiresIn: "7d"
@@ -126,7 +127,7 @@ export const loginUser = async (req, res) => {
 
         return res.status(500).json({
             success: false,
-            message: "Intaernal server error ",
+            message: "Internal  server error ",
         });
     }
 }

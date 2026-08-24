@@ -1,5 +1,5 @@
-import Comment from "../models/Comment";
-import Task from "../models/Task";
+import Comment from "../models/Comment.js";
+import Task from "../models/Task.js";
 
 //create comment
 export const createComment = async (req, res) => {
@@ -84,9 +84,9 @@ export const getTaskComments = async (req, res) => {
 }
 
 //update comments
-export default updateComment = async (req,res)=>{
-  try{
-    const { text } =req.body;
+export const updateComment = async (req, res) => {
+  try {
+    const { text } = req.body;
 
     // const comment= await Comment.findByIdAndUpdate(
     //   req.params.id,

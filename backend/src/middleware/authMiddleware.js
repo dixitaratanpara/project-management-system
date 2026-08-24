@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 const authMiddleware = async (req, res, next) => {
     try {
 
         // Get token from Authorization header
-        const authHeader = req.header.authorization;
+        const authHeader = req.headers.authorization;
 
-        if (!authHeader || !authHeader.startwith("Bearer")) {
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
             return res.status(401).json({
                 success: false,
                 message: "Access denied. No token provided.",
@@ -31,8 +32,8 @@ const authMiddleware = async (req, res, next) => {
 
         //store token
         // req.userId = decoded.id;
-        req.userId = user._id;
-        req.userRole = user.role;
+        req.userId = decoded.id;
+        req.userRole = decoded.role;
 
         next();
 
@@ -47,3 +48,4 @@ const authMiddleware = async (req, res, next) => {
 
     }
 }
+export default authMiddleware;
