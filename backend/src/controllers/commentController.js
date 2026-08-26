@@ -7,7 +7,7 @@ export const createComment = async (req, res) => {
 
     const { text, task } = req.body;
 
-    if (!text || !text) {
+   if (!text || !task){
       return res.status(400).json({
         success: false,
         message: "Text and Task are required",
@@ -88,22 +88,8 @@ export const updateComment = async (req, res) => {
   try {
     const { text } = req.body;
 
-    // const comment= await Comment.findByIdAndUpdate(
-    //   req.params.id,
-    //   { text },
-    //   {
-    //      new: true,
-    //     runValidators: true,
-    //   }).populate("user","name email");
 
-    //   if (!comment) {
-    //   return res.status(404).json({
-    //     success: false,
-    //     message: "Comment not found",
-    //   });
-    // }
-
-    const comment = await Comment.findById(req.paramas.id);
+   const comment = await Comment.findById(req.params.id);
 
      if (!comment) {
       return res.status(404).json({

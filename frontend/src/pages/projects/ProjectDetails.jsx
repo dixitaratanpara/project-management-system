@@ -17,7 +17,7 @@ function ProjectDetails() {
       try {
         const response = await api.get(`/projects/${id}`);
 
-        console.log(response.data);
+        // console.log(response.data);
 
         setProject(response.data.project);
       }

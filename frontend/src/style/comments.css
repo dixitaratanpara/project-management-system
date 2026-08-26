@@ -1,0 +1,280 @@
+/* ================================
+   Comments Section
+================================ */
+
+.comments-section {
+  margin-top: 28px;
+  background: #ffffff;
+  border: 1px solid #e5eaf0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(16, 42, 67, 0.04);
+}
+
+
+/* ================================
+   Comments Header
+================================ */
+
+.comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.comments-header h2 {
+  margin: 0;
+  color: #102a43;
+  font-size: 18px;
+}
+
+.comments-header p {
+  margin: 5px 0 0;
+  color: #8492a6;
+  font-size: 13px;
+}
+
+
+/* ================================
+   Comment Form
+================================ */
+
+.comment-form {
+  padding: 22px 24px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 110px;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.comment-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+.comment-form textarea:hover {
+  border-color: #94a3b8;
+}
+
+.comment-form textarea:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+}
+
+.comment-form button {
+  margin-top: 12px;
+  padding: 11px 17px;
+  border: none;
+  border-radius: 9px;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.comment-form button:hover {
+  background: #0d9488;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
+}
+
+
+/* ================================
+   Comments List
+================================ */
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ================================
+   Comment Card
+================================ */
+
+.comment-card {
+  padding: 20px 24px;
+  border-bottom: 1px solid #edf1f5;
+  transition: background 0.2s ease;
+}
+
+.comment-card:last-child {
+  border-bottom: none;
+}
+
+.comment-card:hover {
+  background: #f8fafc;
+}
+
+
+/* ================================
+   Comment Header
+================================ */
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.comment-header strong {
+  color: #243b53;
+  font-size: 14px;
+}
+
+.comment-header span {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+
+/* ================================
+   Comment Text
+================================ */
+
+.comment-card > p {
+  margin: 0;
+  color: #526579;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+
+/* ================================
+   Comment Actions
+================================ */
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.comment-actions button {
+  padding: 7px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.comment-actions button:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+
+/* ================================
+   Comment Edit
+================================ */
+
+.comment-edit textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 90px;
+  padding: 12px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.comment-edit textarea:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+}
+
+
+/* ================================
+   Empty State
+================================ */
+
+.comments-list .empty-state {
+  min-height: 180px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.comments-list .empty-state h3 {
+  margin: 0;
+  color: #243b53;
+  font-size: 16px;
+}
+
+.comments-list .empty-state p {
+  margin: 7px 0 0;
+  color: #8492a6;
+  font-size: 13px;
+}
+
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 600px) {
+
+  .comments-header {
+    padding: 18px;
+  }
+
+  .comment-form {
+    padding: 18px;
+  }
+
+  .comment-card {
+    padding: 18px;
+  }
+
+  .comment-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .comment-form button {
+    width: 100%;
+  }
+
+  .comment-actions button {
+    flex: 1;
+  }
+
+}

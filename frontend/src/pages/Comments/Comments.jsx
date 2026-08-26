@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../services/api";
+import "../../style/comments.css";
 
 function Comments({ taskId }) {
 
@@ -11,12 +12,9 @@ function Comments({ taskId }) {
     const [editingText, setEditingText] = useState("");
 
     const fetchComments = async () => {
-
         try {
 
-            const response = await api.get(
-                `/comments/${taskId}`
-            );
+            const response = await api.get(`/comments/${taskId}`);
 
             setComments(response.data.comments);
 
@@ -25,18 +23,12 @@ function Comments({ taskId }) {
 
             console.log(error);
 
-            toast.error(
-                error.response?.data?.message ||
-                "Failed to load comments"
-            );
-
+            toast.error(  error.response?.data?.message ||"Failed to load comments");
         }
         finally {
-
-            setLoading(false);
-
+         setLoading(false);
         }
-
+        
     };
 
     useEffect(() => {
@@ -52,11 +44,8 @@ function Comments({ taskId }) {
         e.preventDefault();
 
         if (!commentText.trim()) {
-
             toast.error("Comment is required");
-
             return;
-
         }
 
         try {
@@ -77,33 +66,12 @@ function Comments({ taskId }) {
 
             console.log(error);
 
-            toast.error(
-                error.response?.data?.message ||
-                "Failed to add comment"
+            toast.error(error.response?.data?.message || "Failed to add comment"
             );
-
         }
-
     };
 
-    if (loading) {
-
-        return (
-            <section className="comments-section">
-
-                <h2>
-                    Comments
-                </h2>
-
-                <p>
-                    Loading comments...
-                </p>
-
-            </section>
-        );
-
-    }
-
+   
     const handleEdit = async (commentId) => {
 
         if (!editingText.trim()) {
@@ -129,10 +97,7 @@ function Comments({ taskId }) {
 
             console.log(error);
 
-            toast.error(
-                error.response?.data?.message ||
-                "Failed to update comment"
-            );
+            toast.error(  error.response?.data?.message || "Failed to update comment");
 
         }
 
@@ -169,6 +134,23 @@ function Comments({ taskId }) {
         }
 
     };
+
+     if (loading) {
+        return (
+            <section className="comments-section">
+
+                <h2>
+                    Comments
+                </h2>
+
+                <p>
+                    Loading comments...
+                </p>
+
+            </section>
+        );
+
+    }
 
     return (
         <section className="comments-section">

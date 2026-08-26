@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/task.css";
-
+import Comments from "../Comments/Comments";
 
 function TaskDetails() {
 
@@ -465,6 +465,7 @@ function TaskDetails() {
         </div>
 
       </section>
+      <Comments taskId={task._id} />
 
     </div>
   );

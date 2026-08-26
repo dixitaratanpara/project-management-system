@@ -19,6 +19,7 @@ function Dashboard() {
     <div className="dashboard-layout">
 
       {/* Sidebar */}
+
       <aside className="dashboard-sidebar">
 
         <div className="sidebar-brand">
@@ -33,6 +34,9 @@ function Dashboard() {
           </div>
 
         </div>
+
+
+        {/* Navigation */}
 
         <nav className="sidebar-nav">
 
@@ -53,12 +57,16 @@ function Dashboard() {
             <span>✓</span>
             Tasks
           </Link>
-          
+
           <Link to="/notifications">
             <span>🔔</span>
             Notifications
           </Link>
+
         </nav>
+
+
+        {/* Logout */}
 
         <div className="sidebar-bottom">
 
@@ -71,11 +79,15 @@ function Dashboard() {
 
       </aside>
 
+
       {/* Main Content */}
+
       <main className="dashboard-main">
 
+
         {/* Header */}
-        {/* <header className="dashboard-header">
+
+        <header className="dashboard-header">
 
           <div>
 
@@ -83,7 +95,9 @@ function Dashboard() {
               Overview
             </p>
 
-            <h1>Welcome back!,{user?.name || "User"}!</h1>
+            <h1>
+              Welcome back, {user?.name || "User"}!
+            </h1>
 
             <p className="dashboard-subtitle">
               Here's what's happening with your projects today.
@@ -91,13 +105,15 @@ function Dashboard() {
 
           </div>
 
+
           <div className="dashboard-user">
 
             <div className="user-avatar">
-               {user?.name?.charAt(0).toUpperCase() || "U"}
+              {user?.name?.charAt(0).toUpperCase() || "U"}
             </div>
 
             <div>
+
               <strong>
                 {user?.name || "User"}
               </strong>
@@ -105,14 +121,20 @@ function Dashboard() {
               <span>
                 {user?.role || "Member"}
               </span>
+
             </div>
 
           </div>
 
-        </header> */}
+        </header>
+
 
         {/* Statistics */}
-        {/* <section className="dashboard-stats">
+
+        <section className="dashboard-stats">
+
+
+          {/* Projects */}
 
           <div className="stat-card">
 
@@ -121,15 +143,19 @@ function Dashboard() {
             </div>
 
             <div>
+
               <p>Total Projects</p>
 
               <h2>
-                {projectCount}
+                0
               </h2>
 
             </div>
 
           </div>
+
+
+          {/* Active Tasks */}
 
           <div className="stat-card">
 
@@ -138,11 +164,19 @@ function Dashboard() {
             </div>
 
             <div>
+
               <p>Active Tasks</p>
-              <h2>0</h2>
+
+              <h2>
+                0
+              </h2>
+
             </div>
 
           </div>
+
+
+          {/* Completed Tasks */}
 
           <div className="stat-card">
 
@@ -151,11 +185,19 @@ function Dashboard() {
             </div>
 
             <div>
+
               <p>Completed Tasks</p>
-              <h2>0</h2>
+
+              <h2>
+                0
+              </h2>
+
             </div>
 
           </div>
+
+
+          {/* Notifications */}
 
           <div className="stat-card">
 
@@ -164,22 +206,31 @@ function Dashboard() {
             </div>
 
             <div>
+
               <p>Notifications</p>
-              <h2>0</h2>
+
+              <h2>
+                0
+              </h2>
+
             </div>
 
           </div>
 
-        </section> */}
+        </section>
+
 
         {/* Recent Activity */}
-        {/* <section className="dashboard-section">
+
+        <section className="dashboard-section">
 
           <div className="section-header">
 
             <div>
 
-              <h2>Recent Activity</h2>
+              <h2>
+                Recent Activity
+              </h2>
 
               <p>
                 Keep track of the latest updates.
@@ -189,13 +240,16 @@ function Dashboard() {
 
           </div>
 
+
           <div className="empty-state">
 
             <div className="empty-icon">
               ✓
             </div>
 
-            <h3>No recent activity</h3>
+            <h3>
+              No recent activity
+            </h3>
 
             <p>
               Your latest project and task activity
@@ -204,7 +258,8 @@ function Dashboard() {
 
           </div>
 
-        </section> */}
+        </section>
+
 
       </main>
 
