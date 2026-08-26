@@ -24,12 +24,10 @@ dist-ssr
 *.sw?
 
 
-src/pages/Comments
-src/pages/Notifications
-src/pages/projects
-src/pages/tasks
 
-src/style/comments.css
+src/pages/Notifications
+
+
+
 src/style/notifications.css
-src/style/projects.css
-src/style/task.css
+

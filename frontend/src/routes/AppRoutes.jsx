@@ -1,10 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import ProtectedRoute from "../components/ProtectedRoute";
+// import ProtectedRoute from "../components/ProtectedRoute";
 
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
+import Projects from "../pages/projects/Projects";
+import CreateProject from "../pages/projects/CreateProject";
+import ProjectDetails from "../pages/projects/ProjectDetails";
+import ProjectMembers from "../pages/projects/ProjectMembers";
+import Tasks from "../pages/tasks/Tasks";
+import CreateTask from "../pages/tasks/CreateTask";
+import TaskDetails from "../pages/tasks/TaskDetails";
+import EditTask from "../pages/tasks/EditTask";
 
 function AppRoutes() {
     return (
@@ -17,16 +25,20 @@ function AppRoutes() {
                 <Route path="/login" element={<Login />} />
 
 
-                <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                <Route path="/dashboard" element={
+
+                    <Dashboard />
+
+                } />
 
 
 
-                {/* <Route
+                <Route
                     path="/projects"
                     element={
-                        <ProtectedRoute>
-                            <Projects />
-                        </ProtectedRoute>
+                        // <ProtectedRoute>
+                        <Projects />
+                        // </ProtectedRoute>
 
                     }
                 />
@@ -42,20 +54,12 @@ function AppRoutes() {
                 />
 
                 <Route
-                    path="/projects/:id/edit"
-                    element={<ProtectedRoute>
-                        <EditProject />
-                    </ProtectedRoute>}
-                />
-
-                <Route
                     path="/projects/:id/members"
-                    element={<ProjectMembers />}
-                />
-
-                <Route
-                    path="/projects/:id/members/add"
-                    element={<AddMember />}
+                    element={
+                        <ProtectedRoute>
+                            <ProjectMembers />
+                        </ProtectedRoute>
+                    }
                 />
 
                 <Route
@@ -86,7 +90,7 @@ function AppRoutes() {
                 />
 
                 <Route
-                    path="/tasks/:id/edit"
+                    path="/tasks/edit/:id"
                     element={
                         <ProtectedRoute>
                             <EditTask />
@@ -94,6 +98,22 @@ function AppRoutes() {
                     }
                 />
 
+
+
+                {/*  <Route
+                    path="/projects/:id/edit"
+                    element={<ProtectedRoute>
+                        <EditProject />
+                    </ProtectedRoute>}
+                />
+
+                
+                <Route
+                    path="/projects/:id/members/add"
+                    element={<AddMember />}
+                />
+
+               
                 <Route
                     path="/notifications"
                     element={

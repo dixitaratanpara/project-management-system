@@ -75,7 +75,7 @@ function Dashboard() {
       <main className="dashboard-main">
 
         {/* Header */}
-        <header className="dashboard-header">
+        {/* <header className="dashboard-header">
 
           <div>
 
@@ -109,10 +109,10 @@ function Dashboard() {
 
           </div>
 
-        </header>
+        </header> */}
 
         {/* Statistics */}
-        <section className="dashboard-stats">
+        {/* <section className="dashboard-stats">
 
           <div className="stat-card">
 
@@ -170,10 +170,10 @@ function Dashboard() {
 
           </div>
 
-        </section>
+        </section> */}
 
         {/* Recent Activity */}
-        <section className="dashboard-section">
+        {/* <section className="dashboard-section">
 
           <div className="section-header">
 
@@ -204,7 +204,7 @@ function Dashboard() {
 
           </div>
 
-        </section>
+        </section> */}
 
       </main>
 
