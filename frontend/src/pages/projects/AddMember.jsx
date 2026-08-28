@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/projects.css";
@@ -11,26 +11,46 @@ function AddMember() {
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState("");
-
+  const [users, setUsers] = useState([]);
   const [saving, setSaving] = useState(false);
+
+  //get users
+  const fetchUsers = async () => {
+    try {
+      const response = await api.get("/users");
+
+      console.log(response.data);
+
+      setUsers(response.data.users);
+    }
+    catch (error) {
+
+      console.log(error);
+
+      toast.error(error.response?.data?.message || "Failed to load users");
+    }
+  }
+
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
 
   const handleSubmit = async (e) => {
 
     e.preventDefault();
 
-// Validate User ID
-    if (!userId.trim()) {
-
-      toast.error("User ID is required");
-
+    // Validate User ID
+    if (!userId) {
+      toast.error("Please select a user");
       return;
     }
 
     setSaving(true);
 
     try {
-
-      const response = await api.post( `/projects/${id}/members`,
+      const response = await api.post(`/projects/${id}/members`,
         {
           userId,
         }
@@ -38,9 +58,7 @@ function AddMember() {
 
       console.log(response.data);
 
-      toast.success(
-        response.data.message ||  "Member added successfully"
-      );
+      toast.success(response.data.message || "Member added successfully");
 
       navigate(`/projects/${id}/members`);
 
@@ -49,18 +67,12 @@ function AddMember() {
 
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to add member"
-      );
+      toast.error(error.response?.data?.message || "Failed to add member");
 
     }
     finally {
-
       setSaving(false);
-
     }
-
   };
 
   return (
@@ -111,7 +123,7 @@ function AddMember() {
               </h2>
 
               <p>
-                Enter the user ID of the member you want to add.
+                Select a user you want to add to this project.
               </p>
 
             </div>
@@ -123,20 +135,33 @@ function AddMember() {
             <div className="project-form-group">
 
               <label htmlFor="userId">
-                User ID
+                Select User
               </label>
 
-              <input
-                type="text"
+              <select
                 id="userId"
                 name="userId"
-                placeholder="Enter user ID"
                 value={userId}
                 onChange={(e) =>
                   setUserId(e.target.value)
                 }
                 required
-              />
+              >
+                <option value="">
+                  Select User
+                </option>
+                {users.map((user) => (
+
+                  <option
+                    key={user._id}
+                    value={user._id}
+                  >
+                    {user.name} - {user.email}
+                  </option>
+
+                ))}
+
+              </select>
 
             </div>
 

@@ -276,7 +276,7 @@ export const removeMember = async (req, res) => {
             });
         }
 
-        const memberExists = project.members.some((member) => member.toString() === useId);
+        const memberExists = project.members.some((member) => member.toString() === userId);
 
         if (!memberExists) {
             return res.status(404).json({

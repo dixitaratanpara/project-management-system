@@ -17,45 +17,45 @@ function CreateTask() {
     assignedTo: "",
   });
 
-  // const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([]);
 
-  // const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState([]);
 
   //loding state
   const [saving, setSaving] = useState(false);
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const fetchProjects = async () => {
+    const fetchProjects = async () => {
 
-  //     try {
+      try {
 
-  //       const response = await api.get("/projects");
+        const response = await api.get("/projects");
 
-  //       console.log(response.data);
+        console.log(response.data);
 
-  //       setProjects(response.data.projects);
+        setProjects(response.data.projects);
 
-  //     }
-  //     catch (error) {
+      }
+      catch (error) {
 
-  //       console.log(error);
+        console.log(error);
 
-  //       toast.error(
-  //         error.response?.data?.message ||
-  //         "Failed to load projects"
-  //       );
+        toast.error(
+          error.response?.data?.message ||
+          "Failed to load projects"
+        );
 
-  //     }
+      }
 
-  //   };
+    };
 
-  //   fetchProjects();
+    fetchProjects();
 
-  // }, []);
+  }, []);
 
-
+//assign to 
   const handleChange = async (e) => {
 
     const { name, value } = e.target;
@@ -66,44 +66,36 @@ function CreateTask() {
     });
 
 
-    // if (name === "project") {
+    if (name === "project") {
 
-    //   setMembers([]);
+      setMembers([]);
 
-    //   setFormData((currentData) => ({
-    //     ...currentData,
-    //     assignedTo: "",
-    //   }));
+      setFormData((currentData) => ({
+      ...currentData,
+      project: value,
+      assignedTo: "",
+    }));
 
-    //   if (!value) {
-    //     return;
-    //   }
+      if (!value) {
+        return;
+      }
 
-    //   try {
+      try {
+        const response = await api.get(`/projects/${value}/members`);
 
-    //     const response = await api.get(
-    //       `/projects/${value}/members`
-    //     );
+        console.log(response.data);
 
-    //     console.log(response.data);
+        setMembers(response.data.members);
+      }
+      catch (error) {
 
-    //     setMembers(response.data.members);
+        console.log(error);
 
-    //   }
-    //   catch (error) {
-
-    //     console.log(error);
-
-    //     toast.error(
-    //       error.response?.data?.message ||
-    //       "Failed to load project members"
-    //     );
-
-    //   }
-
-    // }
-
+        toast.error(error.response?.data?.message ||"Failed to load project members");
+      }
+    }
   };
+
 
   const handleSubmit = async (e) => {
 
@@ -123,17 +115,11 @@ function CreateTask() {
 
     try {
 
-      const response = await api.post(
-        "/tasks",
-        formData
-      );
+      const response = await api.post("/tasks",formData);
 
       console.log(response.data);
 
-      toast.success(
-        response.data.message ||
-        "Task created successfully"
-      );
+      toast.success(response.data.message ||"Task created successfully");
 
       navigate("/tasks");
 
@@ -142,18 +128,12 @@ function CreateTask() {
 
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to create task"
-      );
+      toast.error(error.response?.data?.message ||"Failed to create task");
 
     }
     finally {
-
       setSaving(false);
-
     }
-
   };
 
   return (

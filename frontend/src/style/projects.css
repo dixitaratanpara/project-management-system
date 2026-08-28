@@ -1012,3 +1012,160 @@
   }
 
 }
+
+/* =================================
+   Edit Project Form
+================================= */
+
+.project-form-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(16, 42, 67, 0.04);
+}
+
+.project-form-card form {
+  padding: 0 30px 30px;
+}
+
+.project-form-group {
+  margin-bottom: 22px;
+}
+
+.project-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #243b53;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.project-form-group input,
+.project-form-group textarea,
+.project-form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #172033;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.project-form-group input,
+.project-form-group select {
+  height: 44px;
+  padding: 0 13px;
+}
+
+.project-form-group textarea {
+  min-height: 120px;
+  padding: 12px 13px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.project-form-group input:focus,
+.project-form-group textarea:focus,
+.project-form-group select:focus {
+  border-color: #19a7a8;
+  box-shadow: 0 0 0 3px rgba(25, 167, 168, 0.12);
+}
+
+.project-form-group input::placeholder,
+.project-form-group textarea::placeholder {
+  color: #9aa7b6;
+}
+
+/* =================================
+   Form Actions
+================================= */
+
+.project-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 22px;
+  margin-top: 8px;
+  border-top: 1px solid #e5eaf0;
+}
+
+.cancel-project-btn,
+.create-project-btn {
+  min-width: 135px;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancel-project-btn {
+  background: #ffffff;
+  color: #486581;
+  border: 1px solid #d7e0ea;
+}
+
+.cancel-project-btn:hover {
+  background: #f4f7fb;
+  border-color: #b8c5d3;
+}
+
+.create-project-btn {
+  background: #138889;
+  color: #ffffff;
+  border: 1px solid #138889;
+}
+
+.create-project-btn:hover {
+  background: #0f7778;
+  border-color: #0f7778;
+}
+
+.create-project-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* =================================
+   Edit Project Header Button
+================================= */
+
+.projects-header .cancel-project-btn {
+  min-width: auto;
+  background: #ffffff;
+  color: #486581;
+  border: 1px solid #d7e0ea;
+}
+
+.projects-header .cancel-project-btn:hover {
+  background: #f4f7fb;
+  border-color: #b8c5d3;
+}
+
+/* =================================
+   Responsive
+================================= */
+
+@media (max-width: 600px) {
+
+  .project-form-card form {
+    padding: 0 18px 22px;
+  }
+
+  .project-form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-project-btn,
+  .create-project-btn {
+    width: 100%;
+  }
+
+}

@@ -12,56 +12,56 @@ function ProjectDetails() {
 
   const [loading, setLoading] = useState(true);
 
-  
-    const fetchProject = async () => {
-      try {
-        const response = await api.get(`/projects/${id}`);
 
-        // console.log(response.data);
+  const fetchProject = async () => {
+    try {
+      const response = await api.get(`/projects/${id}`);
 
-        setProject(response.data.project);
-      }
-      catch (error) {
-        console.log(error);
+      // console.log(response.data);
 
-        toast.error(
-          error.response?.data?.message ||
-          "Failed to load project"
-        );
-      }
-      finally {
-        setLoading(false);
-      }
-    };
+      setProject(response.data.project);
+    }
+    catch (error) {
+      console.log(error);
+
+      toast.error(
+        error.response?.data?.message ||
+        "Failed to load project"
+      );
+    }
+    finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
 
-  fetchProject();
+    fetchProject();
 
-}, [id]);
+  }, [id]);
 
- if (loading) {
+  if (loading) {
 
-  return (
-    <div className="projects-page">
+    return (
+      <div className="projects-page">
 
-      <div className="empty-state">
+        <div className="empty-state">
 
-        <h3>
-          Loading project...
-        </h3>
+          <h3>
+            Loading project...
+          </h3>
 
-        <p>
-          Please wait while project details are loading.
-        </p>
+          <p>
+            Please wait while project details are loading.
+          </p>
+
+        </div>
 
       </div>
+    );
+  }
 
-    </div>
-  );
-}
 
- 
   // return (
   //   <div className="projects-page">
 
@@ -205,8 +205,8 @@ function ProjectDetails() {
   //   </div>
   // );
 
-  
- // Project not found
+
+  // Project not found
   if (!project) {
     return (
       <div className="projects-page">
@@ -400,7 +400,7 @@ function ProjectDetails() {
 
       </section>
 
-
+      <br></br>
       {/* ================================
           Project Members
       ================================= */}
@@ -420,7 +420,7 @@ function ProjectDetails() {
             </p>
 
           </div>
-
+          <br></br>
 
           <Link
             to={`/projects/${project._id}/members`}
@@ -458,7 +458,7 @@ function ProjectDetails() {
 
       </section>
 
-
+      <br></br>
       {/* ================================
           Project Tasks
       ================================= */}
@@ -479,7 +479,7 @@ function ProjectDetails() {
 
           </div>
 
-
+          <br></br>
           <Link
             to={`/tasks/create?project=${project._id}`}
             className="create-project-btn"

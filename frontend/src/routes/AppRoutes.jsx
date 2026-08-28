@@ -72,12 +72,11 @@ function AppRoutes() {
                 />
 
                 <Route
-                    path="/projects/:id/edit"
+                    path="/projects/edit/:id"
                     element={
                         <ProtectedRoute>
                             <EditProject />
                         </ProtectedRoute>
-
                     }
                 />
 
@@ -122,7 +121,6 @@ function AppRoutes() {
                         </ProtectedRoute>
                     }
                 />
-
 
                 <Route
                     path="/notifications"

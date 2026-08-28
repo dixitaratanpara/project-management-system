@@ -232,9 +232,6 @@ function ProjectMembers() {
             Project Members
           </p>
 
-          <h1>
-            Team Members
-          </h1>
 
           <p className="projects-subtitle">
             View and manage members of this project.

@@ -4,248 +4,249 @@ import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/task.css";
 import Comments from "../Comments/Comments";
+import Tasks from "./Tasks";
 
 function TaskDetails() {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { id } = useParams();
-   
-    const [task, setTask] = useState(null);
+  const { id } = useParams();
 
-    const [loading, setLoading] = useState(true);
+  const [task, setTask] = useState(null);
+
+  const [loading, setLoading] = useState(true);
 
   //get all task
-    useEffect(() => {
+  useEffect(() => {
 
-        const fetchTask = async () => {
+    const fetchTask = async () => {
 
-            try {
+      try {
 
-                const response = await api.get(`/tasks/${id}`);
+        const response = await api.get(`/tasks/${id}`);
 
-                console.log(response.data);
+        console.log(response.data);
 
-                setTask(response.data.task);
+        setTask(response.data.task);
 
-            }
-            catch (error) {
+      }
+      catch (error) {
 
-                console.log(error);
+        console.log(error);
 
-                toast.error(
-                    error.response?.data?.message ||"Failed to load task"
-                );
-
-            }
-            finally {
-                setLoading(false);
-            }
-
-        };
-
-        fetchTask();
-
-    }, [id]);
-
-    // const handleDelete = async () => {
-
-    //     const confirmDelete = window.confirm(
-    //         "Are you sure you want to delete this task?"
-    //     );
-
-    //     if (!confirmDelete) {
-    //         return;
-    //     }
-
-    //     try {
-
-    //         await api.delete(`/tasks/${id}`);
-
-    //         toast.success("Task deleted successfully");
-
-    //         navigate("/tasks");
-
-    //     }
-    //     catch (error) {
-
-    //         console.log(error);
-
-    //         toast.error(
-    //             error.response?.data?.message ||
-    //             "Failed to delete task"
-    //         );
-
-    //     }
-
-    // };
-
-    if (loading) {
-        return (
-            <div className="task-details-page">
-                <div className="empty-state">
-
-                    <h3>
-                        Loading task...
-                    </h3>
-
-                </div>
-            </div>
+        toast.error(
+          error.response?.data?.message || "Failed to load task"
         );
-    }
 
-    //not found task
-    if (!task) {
-        return (
-            <div className="task-details-page">
-                <div className="empty-state">
+      }
+      finally {
+        setLoading(false);
+      }
 
-                    <h3>
-                        Task not found
-                    </h3>
+    };
 
-                    <Link to="/tasks">
-                        Back to Tasks
-                    </Link>
+    fetchTask();
 
-                </div>
-            </div>
-        );
-    }
+  }, [id]);
 
-    // return (
-    //     <div className="task-details-page">
+  // const handleDelete = async () => {
 
-    //         <header className="task-details-header">
+  //     const confirmDelete = window.confirm(
+  //         "Are you sure you want to delete this task?"
+  //     );
 
-    //             <div>
+  //     if (!confirmDelete) {
+  //         return;
+  //     }
 
-    //                 <p className="tasks-label">
-    //                     Task Details
-    //                 </p>
+  //     try {
 
-    //                 <h1>
-    //                     {task.title}
-    //                 </h1>
+  //         await api.delete(`/tasks/${id}`);
 
-    //                 <p className="tasks-subtitle">
-    //                     View task information and manage this task.
-    //                 </p>
+  //         toast.success("Task deleted successfully");
 
-    //             </div>
+  //         navigate("/tasks");
 
-    //             <div className="task-details-actions">
+  //     }
+  //     catch (error) {
 
-    //                 <Link
-    //                     to={`/tasks/${task._id}/edit`}
-    //                     className="edit-task-btn"
-    //                 >
-    //                     Edit Task
-    //                 </Link>
+  //         console.log(error);
 
-    //                 <button
-    //                     onClick={handleDelete}
-    //                     className="delete-task-btn"
-    //                 >
-    //                     Delete Task
-    //                 </button>
+  //         toast.error(
+  //             error.response?.data?.message ||
+  //             "Failed to delete task"
+  //         );
 
-    //             </div>
+  //     }
 
-    //         </header>
+  // };
 
-    //         <section className="task-details-card">
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Title</span>
-
-    //                 <strong>
-    //                     {task.title}
-    //                 </strong>
-
-    //             </div>
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Description</span>
-
-    //                 <p>
-    //                     {task.description || "No description"}
-    //                 </p>
-
-    //             </div>
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Project</span>
-
-    //                 <strong>
-    //                     {task.project?.name || "No project"}
-    //                 </strong>
-
-    //             </div>
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Assigned To</span>
-
-    //                 <strong>
-    //                     {task.assignedTo?.name || "Unassigned"}
-    //                 </strong>
-
-    //             </div>
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Status</span>
-
-    //                 <strong>
-    //                     {task.status}
-    //                 </strong>
-
-    //             </div>
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Priority</span>
-
-    //                 <strong>
-    //                     {task.priority}
-    //                 </strong>
-
-    //   //comments
-    //                 <section className="task-details-card">
-    //                     <Comments taskId={task._id} />
-    //                 </section>
-
-    //             </div>
-
-    //             <div className="task-detail-item">
-
-    //                 <span>Created By</span>
-
-    //                 <strong>
-    //                     {task.createdBy?.name || "Unknown"}
-    //                 </strong>
-
-
-
-    //             </div>
-
-    //         </section>
-
-    //         <Link
-    //             to="/tasks"
-    //             className="back-tasks-btn"
-    //         >
-    //             ← Back to Tasks
-    //         </Link>
-
-    //     </div>
-    // );
-
+  if (loading) {
     return (
+      <div className="task-details-page">
+        <div className="empty-state">
+
+          <h3>
+            Loading task...
+          </h3>
+
+        </div>
+      </div>
+    );
+  }
+
+  //not found task
+  if (!task) {
+    return (
+      <div className="task-details-page">
+        <div className="empty-state">
+
+          <h3>
+            Task not found
+          </h3>
+
+          <Link to="/tasks">
+            Back to Tasks
+          </Link>
+
+        </div>
+      </div>
+    );
+  }
+
+  // return (
+  //     <div className="task-details-page">
+
+  //         <header className="task-details-header">
+
+  //             <div>
+
+  //                 <p className="tasks-label">
+  //                     Task Details
+  //                 </p>
+
+  //                 <h1>
+  //                     {task.title}
+  //                 </h1>
+
+  //                 <p className="tasks-subtitle">
+  //                     View task information and manage this task.
+  //                 </p>
+
+  //             </div>
+
+  //             <div className="task-details-actions">
+
+  //                 <Link
+  //                     to={`/tasks/${task._id}/edit`}
+  //                     className="edit-task-btn"
+  //                 >
+  //                     Edit Task 
+  //                 </Link>
+
+  //                 <button
+  //                     onClick={handleDelete}
+  //                     className="delete-task-btn"
+  //                 >
+  //                     Delete Task
+  //                 </button>
+
+  //             </div>
+
+  //         </header>
+
+  //         <section className="task-details-card">
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Title</span>
+
+  //                 <strong>
+  //                     {task.title}
+  //                 </strong>
+
+  //             </div>
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Description</span>
+
+  //                 <p>
+  //                     {task.description || "No description"}
+  //                 </p>
+
+  //             </div>
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Project</span>
+
+  //                 <strong>
+  //                     {task.project?.name || "No project"}
+  //                 </strong>
+
+  //             </div>
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Assigned To</span>
+
+  //                 <strong>
+  //                     {task.assignedTo?.name || "Unassigned"}
+  //                 </strong>
+
+  //             </div>
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Status</span>
+
+  //                 <strong>
+  //                     {task.status}
+  //                 </strong>
+
+  //             </div>
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Priority</span>
+
+  //                 <strong>
+  //                     {task.priority}
+  //                 </strong>
+
+  //   //comments
+  //                 <section className="task-details-card">
+  //                     <Comments taskId={task._id} />
+  //                 </section>
+
+  //             </div>
+
+  //             <div className="task-detail-item">
+
+  //                 <span>Created By</span>
+
+  //                 <strong>
+  //                     {task.createdBy?.name || "Unknown"}
+  //                 </strong>
+
+
+
+  //             </div>
+
+  //         </section>
+
+  //         <Link
+  //             to="/tasks"
+  //             className="back-tasks-btn"
+  //         >
+  //             ← Back to Tasks
+  //         </Link>
+
+  //     </div>
+  // );
+
+  return (
     <div className="tasks-page">
 
 
@@ -280,10 +281,8 @@ function TaskDetails() {
           </Link>
 
 
-          <Link
-            to={`/tasks/edit/${task._id}`}
-            className="task-create-btn"
-          >
+          <Link to={`/tasks/edit/${task._id}`}
+            className="task-edit-btn" >
             Edit Task
           </Link>
 

@@ -153,14 +153,14 @@ function EditProject() {
             </div>
 
           </div>
-
+          <br></br>
           <form onSubmit={handleSubmit}>
 
             {/* Project Name */}
             <div className="project-form-group">
 
               <label htmlFor="name">
-                Project Name
+                Project Name :
               </label>
 
               <input
@@ -179,7 +179,7 @@ function EditProject() {
             <div className="project-form-group">
 
               <label htmlFor="description">
-                Description
+                Description :
               </label>
 
               <textarea
@@ -198,7 +198,7 @@ function EditProject() {
             <div className="project-form-group">
 
               <label htmlFor="status">
-                Status
+                Status :
               </label>
 
               <select

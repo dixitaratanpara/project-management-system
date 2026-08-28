@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/task.css";
@@ -7,6 +7,8 @@ import "../../style/task.css";
 function EditTask() {
 
   const { id } = useParams();
+
+  console.log("EDIT TASK ID:", id);
 
   const navigate = useNavigate();
 
@@ -18,14 +20,22 @@ function EditTask() {
     assignedTo: "",
   });
 
+  const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [saving, setSaving] = useState(false);
 
-  //get task 
+  //get task  
   const fetchTask = async () => {
 
+    
     try {
+
+      if (!id) {
+      toast.error("Task ID is missing");
+      setLoading(false);
+      return;
+    }
+
 
       const response = await api.get(`/tasks/${id}`);
 
@@ -39,16 +49,12 @@ function EditTask() {
         assignedTo: task.assignedTo?._id || "",
       });
 
-      // if (task.project?._id) {
+      if (task.project?._id) {
 
-      //   const memberResponse = await api.get(
-      //     `/projects/${task.project._id}/members`
-      //   );
+        const membersResponse = await api.get(`/projects/${task.project._id}/members`);
 
-      //   setMembers(memberResponse.data.members);
-
-      // }
-
+        setMembers(membersResponse.data.members);
+      }
     }
     catch (error) {
 
@@ -62,11 +68,12 @@ function EditTask() {
     }
   };
 
+
   useEffect(() => {
     fetchTask();
   }, [id]);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
 
     const { name, value } = e.target;
 
@@ -74,14 +81,15 @@ function EditTask() {
       ...formData,
       [name]: value,
     });
+
   };
 
   const handleSubmit = async (e) => {
 
     e.preventDefault();
 
-     if (!formData.title.trim()) {
-      toast.error( "Task title is required");
+    if (!formData.title.trim()) {
+      toast.error("Task title is required");
       return;
     }
 
@@ -89,9 +97,9 @@ function EditTask() {
 
     try {
 
-      await api.put(`/tasks/${id}`, formData);
- 
-      toast.success(  response.data.message || "Task updated successfully");
+      const response = await api.put(`/tasks/${id}`, formData);
+
+      toast.success(response.data.message || "Task updated successfully");
 
       navigate(`/tasks/${id}`);
 
@@ -100,7 +108,7 @@ function EditTask() {
 
       console.log(error);
 
-      toast.error( error.response?.data?.message || "Failed to update task");
+      toast.error(error.response?.data?.message || "Failed to update task");
     }
     finally {
 
@@ -109,7 +117,8 @@ function EditTask() {
     }
   };
 
-// Loading
+
+  // Loading 
   if (loading) {
 
     return (
@@ -127,7 +136,7 @@ function EditTask() {
     );
   }
 
- return (
+  return (
     <div className="tasks-page">
 
 
@@ -184,7 +193,7 @@ function EditTask() {
             </div>
 
           </div>
-
+          <br></br>
 
           <form onSubmit={handleSubmit}>
 
@@ -306,18 +315,26 @@ function EditTask() {
             <div className="task-form-group">
 
               <label htmlFor="assignedTo">
-                Assigned User ID
+                Assigned User
               </label>
 
-              <input
-                type="text"
-                id="assignedTo"
+              <select
                 name="assignedTo"
-                placeholder="Enter user ID"
                 value={formData.assignedTo}
                 onChange={handleChange}
-              />
-
+              >
+                <option value="">
+                  Unassigned
+                </option>
+                {members.map((member) => (
+                  <option
+                    key={member._id}
+                    value={member._id}
+                  >
+                    {member.name} - {member.email}
+                  </option>
+                ))}
+              </select>
             </div>
 
 
@@ -361,5 +378,4 @@ function EditTask() {
   );
 
 }
-
-export default EditTask;
+export default EditTask;  

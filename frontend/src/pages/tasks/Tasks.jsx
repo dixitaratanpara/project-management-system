@@ -214,36 +214,39 @@ function Tasks() {
 
                 </div>
 
+                {/* //action tag */}
+                <div className="task-card-actions">
+
+                  <Link
+                    to={`/tasks/${task._id}`}
+                    className="task-view-btn"
+                  >
+                    View
+                  </Link>
+
+                  <Link
+                    to={`/tasks/edit/${task._id}`}
+                    className="task-edit-btn"
+                  >
+                    Edit
+                  </Link>
+
+                  <button
+                    type="button"
+                    className="task-delete-btn"
+                    onClick={() =>
+                      handleDelete(task._id)
+                    }
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
               </div>
             ))}
 
-            <div className="task-card-actions">
 
-              <Link
-                to={`/tasks/${task._id}`}
-                className="task-view-btn"
-              >
-                View
-              </Link>
-
-              <Link
-                to={`/tasks/edit/${task._id}`}
-                className="task-edit-btn"
-              >
-                Edit
-              </Link>
-
-              <button
-                type="button"
-                className="task-delete-btn"
-                onClick={() =>
-                  handleDelete(task._id)
-                }
-              >
-                Delete
-              </button>
-
-            </div>
 
           </div>
 
