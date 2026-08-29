@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/task.css";
 
 
 function Tasks() {
+
+  const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -113,13 +115,21 @@ function Tasks() {
 
         </div>
 
-
-        <Link
+        <div> <Link
           to="/tasks/create"
           className="task-create-btn"
         >
           + Create Task
         </Link>
+          &nbsp; &nbsp;
+          <button
+            type="button"
+            className="cancel-task-btn"
+            onClick={() => navigate("/dashboard")}
+          >
+            Back to Dashboard
+          </button>
+        </div>
 
       </header>
 

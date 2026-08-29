@@ -20,9 +20,10 @@ function Register() {
   //   }, [navigate]);
 
   const [formData, setFormData] = useState({
-    name : "",
+    name: "",
     email: "",
     password: "",
+    role: "member",
   });
 
   const handleChange = (e) => {
@@ -49,6 +50,7 @@ function Register() {
         name: "",
         email: "",
         password: "",
+        role: "",
 
       });
 
@@ -158,6 +160,31 @@ function Register() {
 
               </div>
 
+              <div className="form-group">
+
+                <label htmlFor="role">
+                  Role
+                </label>
+
+                <select
+                  id="role"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                >
+                  <option value="member">
+                    Member
+                  </option>
+
+                  <option value="manager">
+                    Manager
+                  </option>
+
+                  
+                </select>
+
+              </div>
+
               <button type="submit">
                 Create Account
               </button>
@@ -166,14 +193,14 @@ function Register() {
             <div className="auth-footer">
               <p>
                 Already have an account?{" "}
-                
-               
-              <span onClick={() => navigate("/login")}>
+
+
+                <span onClick={() => navigate("/login")}>
                   Login
                 </span>
-                        
-             
-              
+
+
+
               </p>
             </div>
           </div>

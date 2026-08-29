@@ -11,7 +11,7 @@ function CreateTask() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    status: "pending",
+    status: "todo",
     priority: "medium",
     project: "",
     assignedTo: "",
@@ -126,7 +126,7 @@ function CreateTask() {
     }
     catch (error) {
 
-      console.log(error);
+      // console.log(error);
 
       toast.error(error.response?.data?.message ||"Failed to create task");
 

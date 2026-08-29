@@ -7,7 +7,7 @@ export const registerUser = async (req, res) => {
 
     try {
 
-        const { name, email, password } = req.body;
+        const { name, email, password, role} = req.body;
 
         if (!name || !email || !password) {
             return res.status(400).json({
@@ -29,12 +29,16 @@ export const registerUser = async (req, res) => {
         //hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
+       //create user role
+        const allowedRoles = ["manager", "member"];
 
         //add user in database 
         const user = await User.create({
             name,
             email,
             password: hashedPassword,
+            role:allowedRoles.includes(role)
+                ? role : "member",
         });
 
 
@@ -43,6 +47,7 @@ export const registerUser = async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            role: user.role,
             // avatar: user.avatar,
             // createAt: user.createAt,
             // updateAt: user.updateAt,
@@ -117,7 +122,7 @@ export const loginUser = async (req, res) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
-                // role: user.role,
+                role: user.role,
                 // avatar: user.avatar,
             }
         });

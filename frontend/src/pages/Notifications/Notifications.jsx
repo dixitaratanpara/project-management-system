@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
 import "../../style/notifications.css";
 
 function Notifications() {
 
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //get all notification
   const fetchNotifications = async () => {
 
     try {
@@ -24,23 +27,17 @@ function Notifications() {
       console.log(error);
 
       toast.error(
-        error.response?.data?.message ||
-        "Failed to load notifications"
+        error.response?.data?.message || "Failed to load notifications"
       );
 
     }
     finally {
-
       setLoading(false);
-
     }
-
   };
 
   useEffect(() => {
-
     fetchNotifications();
-
   }, []);
 
   const markAsRead = async (id) => {
@@ -115,18 +112,28 @@ function Notifications() {
       <header className="notifications-header">
 
         <div>
-
-          <p className="notifications-label">
+          <div> <p className="notifications-label">
             Notifications
           </p>
 
-          <h1>
-            Your Notifications
-          </h1>
+            <h1>
+              Your Notifications
+            </h1>
 
-          <p className="notifications-subtitle">
-            Stay updated with your project activity.
-          </p>
+            <p className="notifications-subtitle">
+              Stay updated with your project activity.
+            </p>
+          </div>
+          <br></br>
+          <div>
+            <button
+              type="button"
+              className="cancel-notification-btn"
+              onClick={() => navigate("/dashboard")}
+            >
+              Back to Dashboard
+            </button>
+          </div>
 
         </div>
 
@@ -171,11 +178,10 @@ function Notifications() {
 
               <div
                 key={notification._id}
-                className={`notification-card ${
-                  notification.isRead
+                className={`notification-card ${notification.isRead
                     ? "read"
                     : "unread"
-                }`}
+                  }`}
               >
 
                 <div className="notification-icon">
@@ -191,8 +197,8 @@ function Notifications() {
                   <span>
                     {notification.createdAt
                       ? new Date(
-                          notification.createdAt
-                        ).toLocaleString()
+                        notification.createdAt
+                      ).toLocaleString()
                       : ""}
                   </span>
 

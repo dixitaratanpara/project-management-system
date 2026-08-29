@@ -29,12 +29,15 @@ function Dashboard() {
     try {
       const projectsResponse = await api.get("/projects");
       const tasksResponse = await api.get("/tasks");
+      const notificationsResponse = await api.get("/notifications");
 
       console.log("Projects:", projectsResponse.data);
 
       console.log("Tasks:", tasksResponse.data);
 
-      
+      console.log("Notifications:", notificationsResponse.data);
+
+
       //projects
       setProjects(projectsResponse.data.projects || []);
 
@@ -43,7 +46,7 @@ function Dashboard() {
       setTasks(tasksResponse.data.tasks || []);
 
       // Notifications
-     setNotifications([]);
+      setNotifications(notificationsResponse.data.notifications || []);
     }
     catch (error) {
       console.log(error);
@@ -75,7 +78,10 @@ function Dashboard() {
   ).length;
 
   // Notifications
-  const notificationCount = notifications.length;
+ // const notificationCount = notifications.length; // all notification mate
+  const notificationCount = notifications.filter(
+    (notification) => !notification.isRead
+  ).length;
 
   // Recent Activity
   const recentActivity = [...projects.map((project) => ({
@@ -204,7 +210,7 @@ function Dashboard() {
               </strong>
 
               <span>
-                {user?.role || "Member"}
+                {user?.role || "member"}
               </span>
 
             </div>

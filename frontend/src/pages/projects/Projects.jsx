@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import "../../style/projects.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate} from "react-router-dom";
 
 
 
 function Projects() {
+    const navigate= useNavigate();
 
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -89,13 +90,26 @@ function Projects() {
                         Manage and track all your projects in one place.
                     </p>
                 </div>
+                <div>
+                    <Link
+                        to="/projects/create"
+                        className="create-project-btn"
+                    >
+                        + Create Project
+                    </Link>
+                    &nbsp;&nbsp;&nbsp;
+                    <button
+                        type="button"
+                        className="cancel-task-btn"
+                        onClick={() => navigate("/dashboard")}
+                    >
+                        Back to Dashboard
+                    </button>
 
-                <Link
-                    to="/projects/create"
-                    className="create-project-btn"
-                >
-                    + Create Project
-                </Link>
+
+                </div>
+
+
 
             </header>
 
@@ -114,7 +128,7 @@ function Projects() {
 
                 </div>
 
- {/* //loding state */}
+                {/* //loding state */}
                 {loading ? (
 
                     <div className="projects-empty">
@@ -132,7 +146,7 @@ function Projects() {
                     </div>
 
                 ) : projects.length === 0 ? (
-//empty state
+                    //empty state
                     <div className="projects-empty">
 
                         <div className="projects-empty-icon">
@@ -156,7 +170,7 @@ function Projects() {
                     </div>
 
                 ) : (
-//project list
+                    //project list
                     <div className="projects-grid">
 
                         {projects.map((project) => (

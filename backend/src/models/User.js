@@ -19,7 +19,8 @@ const userSchema= new mongoose.Schema({
     },
     role:{
         type:String,
-        enum:["admin","project_manager","member"],
+        // enum:["admin","project_manager","member"],
+        enum:["admin","manager","member"],
         default:"member"
     },
 },{
