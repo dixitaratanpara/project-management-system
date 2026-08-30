@@ -11,7 +11,7 @@ router.get("/", authMiddleware, getTasks);
 
 router.get("/:id", authMiddleware, getTask);
 
-router.put("/:id",authMiddleware, roleMiddleware("admin", "manager"),updateTask);
+router.put("/:id",authMiddleware, roleMiddleware("admin", "manager","member"),updateTask);
 
 router.delete("/:id",authMiddleware, roleMiddleware("admin"),deleteTask);
 

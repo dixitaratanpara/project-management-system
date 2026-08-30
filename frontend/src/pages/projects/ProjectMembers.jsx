@@ -6,82 +6,65 @@ import "../../style/projects.css";
 
 function ProjectMembers() {
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const { id } = useParams();
 
   const [members, setMembers] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
-  // const handleRemoveMember = async (userId) => {
-
-  //   try {
-
-  //     const response = await api.delete(
-  //       `/projects/${id}/members`,
-  //       {
-  //         data: {
-  //           userId,
-  //         },
-  //       }
-  //     );
-
-  //     console.log(response.data);
-
-  //     toast.success(
-  //       response.data.message ||
-  //       "Member removed successfully"
-  //     );
-
-  //     setMembers((currentMembers) =>
-  //       currentMembers.filter(
-  //         (member) => member._id !== userId
-  //       )
-  //     );
-
-  //   }
-  //   catch (error) {
-
-  //     console.log(error);
-
-  //     toast.error(
-  //       error.response?.data?.message ||
-  //       "Failed to remove member"
-  //     );
-
-  //   }
-
-  // };
-
+  //fetch member 
   const fetchMembers = async () => {
+    try {
+      const response = await api.get(`/projects/${id}/members`);
 
-      try {
+      setMembers(response.data.members);
 
-        const response = await api.get(`/projects/${id}/members`);
+    }
+    catch (error) {
+      console.log(error);
 
-        setMembers(response.data.members);
+      toast.error(error.response?.data?.message || "Failed to load project members");
+    }
+    finally {
+      setLoading(false);
+    }
+  };
 
-      }
-      catch (error) {
+  useEffect(() => {
+    fetchMembers();
+  }, [id]);
 
-        console.log(error);
+  //romeve member  
+  const handleRemoveMember = async (userId) => {
+    try {
 
-        toast.error(
-          error.response?.data?.message ||"Failed to load project members"
-        );
+      const response = await api.delete(`/projects/${id}/members`,
+        {
+          data: { userId, },
+        }
+      );
 
-      }
-      finally {
+      console.log(response.data);
 
-        setLoading(false);
+      toast.success(response.data.message || "Member removed successfully");
 
-      }
-    };
+      setMembers((currentMembers) =>
+        currentMembers.filter(
+          (member) => member._id !== userId
+        )
+      );
+    }
+    catch (error) {
+      console.log(error);
 
-    useEffect(()=>{
-      fetchMembers();
-    },[id]);
+      toast.error(error.response?.data?.message || "Failed to remove member");
+    }
+  };
 
-//loding
+
+  //loding
   if (loading) {
     return (
       <div className="projects-page">
@@ -217,12 +200,10 @@ function ProjectMembers() {
 
   //   </div>
   // );
- return (
+  return (
     <div className="projects-page">
 
-      {/* ================================
-          Header
-      ================================= */}
+      {/*Header*/}
 
       <header className="projects-header">
 
@@ -249,22 +230,20 @@ function ProjectMembers() {
             Back to Project
           </Link>
 
-
-          <Link
-            to={`/projects/${id}/members/add`}
-            className="create-project-btn"
-          >
-            + Add Member
-          </Link>
-
+          {(user?.role === "admin" || user?.role === "manager") && (
+            <Link
+              to={`/projects/${id}/members/add`}
+              className="create-project-btn"
+            >
+              + Add Member
+            </Link>
+          )}
         </div>
 
       </header>
 
 
-      {/* ================================
-          Members Section
-      ================================= */}
+      {/* Members Section */}
 
       <section className="projects-section">
 
@@ -303,14 +282,14 @@ function ProjectMembers() {
               Add team members to start collaborating
               on this project.
             </p>
-
-            <Link
-              to={`/projects/${id}/members/add`}
-              className="empty-create-btn"
-            >
-              + Add Member
-            </Link>
-
+            {(user?.role === "admin" || user?.role === "manager") && (
+              <Link
+                to={`/projects/${id}/members/add`}
+                className="empty-create-btn"
+              >
+                + Add Member
+              </Link>
+            )}
           </div>
 
         ) : (
@@ -351,7 +330,14 @@ function ProjectMembers() {
                   </span>
 
                 </div>
-
+                {user?.role === "admin" && (
+                  <button
+                    onClick={() => handleRemoveMember(member._id)}
+                    className="create-project-btn"
+                  >
+                    Remove
+                  </button>
+                )}
               </div>
 
             ))}

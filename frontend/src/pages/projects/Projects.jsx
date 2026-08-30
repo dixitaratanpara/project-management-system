@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import "../../style/projects.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
-import { Link,  useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 function Projects() {
-    const navigate= useNavigate();
+
+    const navigate = useNavigate();
+
+    const user = JSON.parse(localStorage.getItem("user"));
 
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -91,12 +94,15 @@ function Projects() {
                     </p>
                 </div>
                 <div>
-                    <Link
-                        to="/projects/create"
-                        className="create-project-btn"
-                    >
-                        + Create Project
-                    </Link>
+                    {(user?.role === "admin" || user?.role === "manager") && (
+                        <Link
+                            to="/projects/create"
+                            className="create-project-btn"
+                        >
+                            + Create Project
+                        </Link>
+                    )}
+
                     &nbsp;&nbsp;&nbsp;
                     <button
                         type="button"
@@ -156,17 +162,16 @@ function Projects() {
                         <h3>No projects yet</h3>
 
                         <p>
-                            Create your first project to start
-                            managing your work and team.
+                            Create your first project to start managing your work and team.
                         </p>
-
-                        <Link
-                            to="/projects/create"
-                            className="empty-create-btn"
-                        >
-                            Create Your First Project
-                        </Link>
-
+                        {(user?.role === "admin" || user?.role === "manager") && (
+                            <Link
+                                to="/projects/create"
+                                className="empty-create-btn"
+                            >
+                                Create Your First Project
+                            </Link>
+                        )}
                     </div>
 
                 ) : (

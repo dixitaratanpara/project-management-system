@@ -6,6 +6,8 @@ import "../../style/projects.css";
 
 function EditProject() {
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -207,6 +209,10 @@ function EditProject() {
                 value={formData.status}
                 onChange={handleChange}
               >
+                <option value="planning">
+                  Planning
+                </option>
+
                 <option value="active">
                   Active
                 </option>
@@ -228,17 +234,17 @@ function EditProject() {
               >
                 Cancel
               </button>
-
-              <button
-                type="submit"
-                className="create-project-btn"
-                disabled={saving}
-              >
-                {saving
-                  ? "Updating..."
-                  : "Update Project"}
-              </button>
-
+              {(user?.role === "admin" || user?.role === "manager") && (
+                <button
+                  type="submit"
+                  className="create-project-btn"
+                  disabled={saving}
+                >
+                  {saving
+                    ? "Updating..."
+                    : "Update Project"}
+                </button>
+              )}
             </div>
 
           </form>

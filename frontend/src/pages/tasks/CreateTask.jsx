@@ -55,7 +55,7 @@ function CreateTask() {
 
   }, []);
 
-//assign to 
+  //assign to 
   const handleChange = async (e) => {
 
     const { name, value } = e.target;
@@ -71,10 +71,10 @@ function CreateTask() {
       setMembers([]);
 
       setFormData((currentData) => ({
-      ...currentData,
-      project: value,
-      assignedTo: "",
-    }));
+        ...currentData,
+        project: value,
+        assignedTo: "",
+      }));
 
       if (!value) {
         return;
@@ -91,7 +91,7 @@ function CreateTask() {
 
         console.log(error);
 
-        toast.error(error.response?.data?.message ||"Failed to load project members");
+        toast.error(error.response?.data?.message || "Failed to load project members");
       }
     }
   };
@@ -115,11 +115,11 @@ function CreateTask() {
 
     try {
 
-      const response = await api.post("/tasks",formData);
+      const response = await api.post("/tasks", formData);
 
       console.log(response.data);
 
-      toast.success(response.data.message ||"Task created successfully");
+      toast.success(response.data.message || "Task created successfully");
 
       navigate("/tasks");
 
@@ -128,7 +128,7 @@ function CreateTask() {
 
       // console.log(error);
 
-      toast.error(error.response?.data?.message ||"Failed to create task");
+      toast.error(error.response?.data?.message || "Failed to create task");
 
     }
     finally {
@@ -336,17 +336,18 @@ function CreateTask() {
               >
                 Cancel
               </button>
+              {(user?.role === "admin" || user?.role === "manager") && (
 
-              <button
-                type="submit"
-                className="create-task-btn"
-                disabled={saving}
-              >
-                {saving
-                  ? "Creating..."
-                  : "Create Task"}
-              </button>
-
+                <button
+                  type="submit"
+                  className="create-task-btn"
+                  disabled={saving}
+                >
+                  {saving
+                    ? "Creating..."
+                    : "Create Task"}
+                </button>
+              )}
             </div>
 
           </form>

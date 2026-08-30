@@ -5,6 +5,7 @@ import api from "../../services/api";
 import "../../style/projects.css";
 
 function AddMember() {
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const { id } = useParams();
 
@@ -176,17 +177,17 @@ function AddMember() {
               >
                 Cancel
               </button>
-
-              <button
-                type="submit"
-                className="create-project-btn"
-                disabled={saving}
-              >
-                {saving
-                  ? "Adding..."
-                  : "Add Member"}
-              </button>
-
+              {(user?.role === "admin" || user?.role === "manager") && (
+                <button
+                  type="submit"
+                  className="create-project-btn"
+                  disabled={saving}
+                >
+                  {saving
+                    ? "Adding..."
+                    : "Add Member"}
+                </button>
+              )}
             </div>
 
           </form>

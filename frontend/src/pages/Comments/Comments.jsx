@@ -13,7 +13,6 @@ function Comments({ taskId }) {
 
     const fetchComments = async () => {
         try {
-
             const response = await api.get(`/comments/${taskId}`);
 
             setComments(response.data.comments);
@@ -32,11 +31,9 @@ function Comments({ taskId }) {
     };
 
     useEffect(() => {
-
         if (taskId) {
             fetchComments();
         }
-
     }, [taskId]);
 
     const handleSubmit = async (e) => {

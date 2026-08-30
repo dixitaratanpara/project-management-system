@@ -16,6 +16,7 @@ import CreateTask from "../pages/tasks/CreateTask";
 import TaskDetails from "../pages/tasks/TaskDetails";
 import EditTask from "../pages/tasks/EditTask";
 import Notifications from "../pages/Notifications/Notifications";
+import NotFound from "../pages/NotFound";
 
 
 function AppRoutes() {
@@ -130,6 +131,8 @@ function AppRoutes() {
                         </ProtectedRoute>
                     }
                 />
+
+                <Route path="*" element={<NotFound />} />
 
             </Routes>
         </BrowserRouter>

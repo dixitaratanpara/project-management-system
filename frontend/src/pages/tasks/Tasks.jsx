@@ -6,6 +6,7 @@ import "../../style/task.css";
 
 
 function Tasks() {
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const navigate = useNavigate();
 
@@ -115,13 +116,17 @@ function Tasks() {
 
         </div>
 
-        <div> <Link
-          to="/tasks/create"
-          className="task-create-btn"
-        >
-          + Create Task
-        </Link>
+        <div>
+          {(user?.role === "admin" || user?.role === "manager") && (
+            <Link
+              to="/tasks/create"
+              className="task-create-btn"
+            >
+              + Create Task
+            </Link>
+          )}
           &nbsp; &nbsp;
+
           <button
             type="button"
             className="cancel-task-btn"
@@ -171,13 +176,15 @@ function Tasks() {
             <p>
               Create your first task to start managing project work.
             </p>
+            {(user?.role === "admin" || user?.role === "manager") && (
+              <Link
+                to="/tasks/create"
+                className="task-create-btn"
+              >
+                + Create Task
+              </Link>
 
-            <Link
-              to="/tasks/create"
-              className="task-create-btn"
-            >
-              + Create Task
-            </Link>
+            )}
 
           </div>
 
@@ -240,17 +247,17 @@ function Tasks() {
                   >
                     Edit
                   </Link>
-
-                  <button
-                    type="button"
-                    className="task-delete-btn"
-                    onClick={() =>
-                      handleDelete(task._id)
-                    }
-                  >
-                    Delete
-                  </button>
-
+                  {user?.role === "admin" && (
+                    <button
+                      type="button"
+                      className="task-delete-btn"
+                      onClick={() =>
+                        handleDelete(task._id)
+                      }
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
 
               </div>

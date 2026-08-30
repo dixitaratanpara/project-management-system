@@ -1,0 +1,117 @@
+/* ================================
+   404 Page
+================================ */
+
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #f4f7fb;
+  color: #172033;
+}
+
+
+/* ================================
+   Card
+================================ */
+
+.not-found-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 55px 40px;
+  box-sizing: border-box;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5eaf0;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(16, 42, 67, 0.08);
+}
+
+
+/* ================================
+   404 Number
+================================ */
+
+.not-found-code {
+  margin-bottom: 10px;
+  color: #19a7a8;
+  font-size: 82px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+
+/* ================================
+   Heading
+================================ */
+
+.not-found-card h1 {
+  margin: 15px 0 8px;
+  color: #102a43;
+  font-size: 28px;
+}
+
+
+/* ================================
+   Description
+================================ */
+
+.not-found-card p {
+  max-width: 400px;
+  margin: 0 auto 28px;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ================================
+   Button
+================================ */
+
+.not-found-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 9px;
+  background: #0f766e;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.not-found-btn:hover {
+  background: #0d9488;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
+}
+
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 600px) {
+
+  .not-found-page {
+    padding: 20px;
+  }
+
+  .not-found-card {
+    padding: 45px 25px;
+  }
+
+  .not-found-code {
+    font-size: 65px;
+  }
+
+  .not-found-card h1 {
+    font-size: 24px;
+  }
+
+}

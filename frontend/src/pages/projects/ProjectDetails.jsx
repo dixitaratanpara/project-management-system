@@ -6,28 +6,27 @@ import "../../style/projects.css";
 
 function ProjectDetails() {
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const { id } = useParams();
 
   const [project, setProject] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
-
+  //get projects
   const fetchProject = async () => {
     try {
       const response = await api.get(`/projects/${id}`);
 
-      // console.log(response.data);
+      console.log(response.data);
 
       setProject(response.data.project);
     }
     catch (error) {
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to load project"
-      );
+      toast.error(error.response?.data?.message || "Failed to load project");
     }
     finally {
       setLoading(false);
@@ -35,9 +34,7 @@ function ProjectDetails() {
   };
 
   useEffect(() => {
-
     fetchProject();
-
   }, [id]);
 
   //delete projects
@@ -57,7 +54,7 @@ function ProjectDetails() {
     } catch (error) {
       console.log(error);
 
-      toast.error(error.response?.data?.message ||"Failed to delete project");
+      toast.error(error.response?.data?.message || "Failed to delete project");
     }
 
   };
@@ -82,151 +79,6 @@ function ProjectDetails() {
     );
   }
 
-
-  // return (
-  //   <div className="projects-page">
-
-  //     {/* Header */}
-  //     <header className="projects-header">
-
-  //       <div>
-
-  //         <p className="projects-label">
-  //           Project Details
-  //         </p>
-
-  //         <h1>{project.name}</h1>
-
-  //         <p className="projects-subtitle">
-  //           View project information and details.
-  //         </p>
-
-  //       </div>
-
-  //       <div className="project-header-actions">
-
-  //         <Link
-  //           to="/projects"
-  //           className="cancel-project-btn"
-  //         >
-  //           Back to Projects
-  //         </Link>
-
-  //         <Link
-  //           to={`/projects/${project._id}/members`}
-  //           className="cancel-project-btn"
-  //         >
-  //           View Members
-  //         </Link>
-
-
-  //         <Link
-  //           to={`/projects/edit/${project._id}`}
-  //           className="create-project-btn"
-  //         >
-  //           Edit Project
-  //         </Link>
-
-  //       </div>
-
-  //     </header>
-
-  //     {/* Project Information */}
-  //     <section className="projects-section">
-
-  //       <div className="project-form-card">
-
-  //         <div className="section-header">
-
-  //           <div>
-
-  //             <h2>Project Information</h2>
-
-  //             <p>
-  //               Details about this project.
-  //             </p>
-
-  //           </div>
-
-  //         </div>
-
-  //         <div className="project-details">
-
-  //           {/* Project Name */}
-  //           <div className="project-detail-item">
-
-  //             <span>
-  //               Project Name
-  //             </span>
-
-  //             <strong>
-  //               {project.name}
-  //             </strong>
-
-  //           </div>
-
-  //           {/* Description */}
-  //           <div className="project-detail-item">
-
-  //             <span>
-  //               Description
-  //             </span>
-
-  //             <p>
-  //               {project.description}
-  //             </p>
-
-  //           </div>
-
-  //           {/* Status */}
-  //           <div className="project-detail-item">
-
-  //             <span>
-  //               Status
-  //             </span>
-
-  //             <strong>
-  //               {project.status}
-  //             </strong>
-
-  //           </div>
-
-  //           {/* Created By */}
-  //           <div className="project-detail-item">
-
-  //             <span>
-  //               Created By
-  //             </span>
-
-  //             <strong>
-  //               {project.createdBy?.name || "Unknown"}
-  //             </strong>
-
-  //           </div>
-
-  //           {/* Creator Email */}
-  //           <div className="project-detail-item">
-
-  //             <span>
-  //               Creator Email
-  //             </span>
-
-  //             <strong>
-  //               {project.createdBy?.email || "Not available"}
-  //             </strong>
-
-  //           </div>
-
-  //         </div>
-
-  //       </div>
-
-  //     </section>
-
-  //   </div>
-  // );
-
-
   // Project not found
   if (!project) {
     return (
@@ -241,8 +93,7 @@ function ProjectDetails() {
           <h3>Project not found</h3>
 
           <p>
-            The project you are looking for does not exist
-            or may have been removed.
+            The project you are looking for does not exist or may have been removed.
           </p>
 
           <Link
@@ -261,9 +112,7 @@ function ProjectDetails() {
   return (
     <div className="projects-page">
 
-      {/* ================================
-          Header
-      ================================= */}
+      {/*Header */}
 
       <header className="projects-header">
 
@@ -301,21 +150,24 @@ function ProjectDetails() {
             View Members
           </Link>
 
+          {(user?.role === "admin" || user?.role === "manager") && (
+            <Link
+              to={`/projects/edit/${project._id}`}
+              className="create-project-btn"
+            >
+              Edit Project
+            </Link>
+          )}
 
-          <Link
-            to={`/projects/edit/${project._id}`}
-            className="create-project-btn"
-          >
-            Edit Project
-          </Link>
-
-          <button
-            type="button"
-            className="create-project-btn"
-            onClick={handleDelete}
-          >
-            Delete Project
-          </button>
+          {(user?.role === "admin" || user?.role === "manager") && (
+            <button
+              type="button"
+              className="create-project-btn"
+              onClick={handleDelete}
+            >
+              Delete Project
+            </button>
+          )}
 
 
         </div>
@@ -323,9 +175,7 @@ function ProjectDetails() {
       </header>
 
 
-      {/* ================================
-          Project Information
-      ================================= */}
+      {/* Project Information */}
 
       <section className="projects-section">
 
@@ -431,9 +281,7 @@ function ProjectDetails() {
       </section>
 
       <br></br>
-      {/* ================================
-          Project Members
-      ================================= */}
+      {/* Project Members*/}
 
       <section className="projects-section">
 
@@ -489,63 +337,62 @@ function ProjectDetails() {
       </section>
 
       <br></br>
-      {/* ================================
-          Project Tasks
-      ================================= */}
+      {/* Project Tasks */}
+      {(user?.role === "admin" || user?.role === "manager") && (
+        <section className="projects-section">
 
-      <section className="projects-section">
+          <div className="section-header">
 
-        <div className="section-header">
+            <div>
 
-          <div>
+              <h2>
+                Project Tasks
+              </h2>
 
-            <h2>
-              Project Tasks
-            </h2>
+              <p>
+                Track tasks associated with this project.
+              </p>
+
+            </div>
+
+            <br></br>
+
+            <Link
+              to={`/tasks/create?project=${project._id}`}
+              className="create-project-btn"
+            >
+              + Create Task
+            </Link>
+
+          </div>
+
+
+          <div className="project-feature-empty">
+
+            <div className="project-feature-icon">
+              ✓
+            </div>
+
+            <h3>
+              Manage Project Tasks
+            </h3>
 
             <p>
-              Track tasks associated with this project.
+              Create and manage tasks associated
+              with this project.
             </p>
 
+            <Link
+              to={`/tasks/create?project=${project._id}`}
+              className="empty-create-btn"
+            >
+              Create Task
+            </Link>
+
           </div>
 
-          <br></br>
-          <Link
-            to={`/tasks/create?project=${project._id}`}
-            className="create-project-btn"
-          >
-            + Create Task
-          </Link>
-
-        </div>
-
-
-        <div className="project-feature-empty">
-
-          <div className="project-feature-icon">
-            ✓
-          </div>
-
-          <h3>
-            Manage Project Tasks
-          </h3>
-
-          <p>
-            Create and manage tasks associated
-            with this project.
-          </p>
-
-          <Link
-            to={`/tasks/create?project=${project._id}`}
-            className="empty-create-btn"
-          >
-            Create Task
-          </Link>
-
-        </div>
-
-      </section>
-
+        </section>
+      )}
     </div>
   );
 }
