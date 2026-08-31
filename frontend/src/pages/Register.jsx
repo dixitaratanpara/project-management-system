@@ -3,6 +3,7 @@ import "../style/auth.css";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import { emailRegex, passwordRegex } from "../utils/validation";
 
 
 function Register() {
@@ -36,6 +37,22 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+     //email validation
+        if (!emailRegex.test(formData.email)) {
+            toast.error("Please enter a valid email address.");
+            return;
+        }
+
+
+        //password validation
+        if (!passwordRegex.test(formData.password)) {
+            toast.error(
+                "Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character."
+            );
+            return;
+        }
+
 
     try {
       const response = await api.post("/auth/register", formData);

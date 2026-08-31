@@ -152,9 +152,14 @@ function Login() {
                                 <span onClick={() => navigate("/register")}>
                                     Register
                                 </span>
+                                <br></br>
+                                <span onClick={() => navigate("/forgot-password")}>
+                                    Forgot Password?
+                                </span>
 
                             </p>
                         </div>
+
 
                     </div>
                 </div>

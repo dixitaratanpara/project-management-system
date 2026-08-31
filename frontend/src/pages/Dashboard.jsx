@@ -78,7 +78,7 @@ function Dashboard() {
   ).length;
 
   // Notifications
- // const notificationCount = notifications.length; // all notification mate
+  // const notificationCount = notifications.length; // all notification mate
   const notificationCount = notifications.filter(
     (notification) => !notification.isRead
   ).length;
@@ -198,10 +198,15 @@ function Dashboard() {
 
 
           <div className="dashboard-user">
-
-            <div className="user-avatar">
+    
+            <Link
+              to="/profile"
+             className="user-avatar"
+            >{user?.name?.charAt(0).toUpperCase() || "U"}</Link>
+            
+            {/* <div className="user-avatar">
               {user?.name?.charAt(0).toUpperCase() || "U"}
-            </div>
+            </div> */}
 
             <div>
 
@@ -212,6 +217,7 @@ function Dashboard() {
               <span>
                 {user?.role || "member"}
               </span>
+
 
             </div>
 

@@ -17,7 +17,9 @@ import TaskDetails from "../pages/tasks/TaskDetails";
 import EditTask from "../pages/tasks/EditTask";
 import Notifications from "../pages/Notifications/Notifications";
 import NotFound from "../pages/NotFound";
-
+import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
+import Profile from "../pages/Profile";
 
 function AppRoutes() {
     return (
@@ -134,6 +136,20 @@ function AppRoutes() {
 
                 <Route path="*" element={<NotFound />} />
 
+                <Route
+                    path="/forgot-password"
+                    element={<ForgotPassword />}
+                />
+
+                <Route
+                    path="/reset-password/:token"
+                    element={<ResetPassword />}
+                />
+
+                <Route
+                    path="/profile"
+                    element={<Profile />}
+                />
             </Routes>
         </BrowserRouter>
     );

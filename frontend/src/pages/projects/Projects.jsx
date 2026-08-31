@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 
-
 function Projects() {
 
     const navigate = useNavigate();
