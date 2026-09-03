@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/task.css";
@@ -7,8 +7,6 @@ import Comments from "../Comments/Comments";
 import Tasks from "./Tasks";
 
 function TaskDetails() {
-
-  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -49,37 +47,6 @@ function TaskDetails() {
 
   }, [id]);
 
-  // const handleDelete = async () => {
-
-  //     const confirmDelete = window.confirm(
-  //         "Are you sure you want to delete this task?"
-  //     );
-
-  //     if (!confirmDelete) {
-  //         return;
-  //     }
-
-  //     try {
-
-  //         await api.delete(`/tasks/${id}`);
-
-  //         toast.success("Task deleted successfully");
-
-  //         navigate("/tasks");
-
-  //     }
-  //     catch (error) {
-
-  //         console.log(error);
-
-  //         toast.error(
-  //             error.response?.data?.message ||
-  //             "Failed to delete task"
-  //         );
-
-  //     }
-
-  // };
 
   if (loading) {
     return (
@@ -114,137 +81,6 @@ function TaskDetails() {
     );
   }
 
-  // return (
-  //     <div className="task-details-page">
-
-  //         <header className="task-details-header">
-
-  //             <div>
-
-  //                 <p className="tasks-label">
-  //                     Task Details
-  //                 </p>
-
-  //                 <h1>
-  //                     {task.title}
-  //                 </h1>
-
-  //                 <p className="tasks-subtitle">
-  //                     View task information and manage this task.
-  //                 </p>
-
-  //             </div>
-
-  //             <div className="task-details-actions">
-
-  //                 <Link
-  //                     to={`/tasks/${task._id}/edit`}
-  //                     className="edit-task-btn"
-  //                 >
-  //                     Edit Task 
-  //                 </Link>
-
-  //                 <button
-  //                     onClick={handleDelete}
-  //                     className="delete-task-btn"
-  //                 >
-  //                     Delete Task
-  //                 </button>
-
-  //             </div>
-
-  //         </header>
-
-  //         <section className="task-details-card">
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Title</span>
-
-  //                 <strong>
-  //                     {task.title}
-  //                 </strong>
-
-  //             </div>
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Description</span>
-
-  //                 <p>
-  //                     {task.description || "No description"}
-  //                 </p>
-
-  //             </div>
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Project</span>
-
-  //                 <strong>
-  //                     {task.project?.name || "No project"}
-  //                 </strong>
-
-  //             </div>
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Assigned To</span>
-
-  //                 <strong>
-  //                     {task.assignedTo?.name || "Unassigned"}
-  //                 </strong>
-
-  //             </div>
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Status</span>
-
-  //                 <strong>
-  //                     {task.status}
-  //                 </strong>
-
-  //             </div>
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Priority</span>
-
-  //                 <strong>
-  //                     {task.priority}
-  //                 </strong>
-
-  //   //comments
-  //                 <section className="task-details-card">
-  //                     <Comments taskId={task._id} />
-  //                 </section>
-
-  //             </div>
-
-  //             <div className="task-detail-item">
-
-  //                 <span>Created By</span>
-
-  //                 <strong>
-  //                     {task.createdBy?.name || "Unknown"}
-  //                 </strong>
-
-
-
-  //             </div>
-
-  //         </section>
-
-  //         <Link
-  //             to="/tasks"
-  //             className="back-tasks-btn"
-  //         >
-  //             ← Back to Tasks
-  //         </Link>
-
-  //     </div>
-  // );
 
   return (
     <div className="tasks-page">
@@ -342,8 +178,7 @@ function TaskDetails() {
               </span>
 
               <p>
-                {task.description ||
-                  "No description available."}
+                {task.description || "No description available."}
               </p>
 
             </div>
@@ -388,8 +223,7 @@ function TaskDetails() {
               </span>
 
               <strong>
-                {task.project?.name ||
-                  "Not available"}
+                {task.project?.name || "Not available"}
               </strong>
 
             </div>
@@ -404,8 +238,7 @@ function TaskDetails() {
               </span>
 
               <strong>
-                {task.assignedTo?.name ||
-                  "Not assigned"}
+                {task.assignedTo?.name ||"Not assigned"}
               </strong>
 
             </div>
@@ -420,8 +253,7 @@ function TaskDetails() {
               </span>
 
               <strong>
-                {task.assignedTo?.email ||
-                  "Not available"}
+                {task.assignedTo?.email || "Not available"}
               </strong>
 
             </div>
@@ -436,8 +268,7 @@ function TaskDetails() {
               </span>
 
               <strong>
-                {task.createdBy?.name ||
-                  "Unknown"}
+                {task.createdBy?.name || "Unknown"}
               </strong>
 
             </div>
@@ -452,8 +283,7 @@ function TaskDetails() {
               </span>
 
               <strong>
-                {task.createdBy?.email ||
-                  "Not available"}
+                {task.createdBy?.email || "Not available"}
               </strong>
 
             </div>

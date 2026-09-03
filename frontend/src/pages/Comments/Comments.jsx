@@ -16,10 +16,8 @@ function Comments({ taskId }) {
             const response = await api.get(`/comments/${taskId}`);
 
             setComments(response.data.comments);
-
         }
         catch (error) {
-
             console.log(error);
 
             toast.error(  error.response?.data?.message ||"Failed to load comments");
@@ -120,16 +118,10 @@ function Comments({ taskId }) {
 
         }
         catch (error) {
-
             console.log(error);
 
-            toast.error(
-                error.response?.data?.message ||
-                "Failed to delete comment"
-            );
-
+            toast.error(error.response?.data?.message ||"Failed to delete comment");
         }
-
     };
 
      if (loading) {
@@ -257,7 +249,6 @@ function Comments({ taskId }) {
                                         </button>
 
                                     </div>
-
                                 </div>
 
                             ) : (

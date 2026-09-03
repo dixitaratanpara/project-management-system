@@ -23,7 +23,6 @@ export const getMyNotification = async (req, res) => {
     }
 }
 
-
 //mark as read
 export const markNotificationAsRead = async (req, res) => {
   try {

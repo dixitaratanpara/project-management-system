@@ -26,7 +26,7 @@
 .profile-label {
   margin: 0 0 6px;
   color: #19a7a8;
-  font-size: 12px;
+  font-size:20px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -34,7 +34,7 @@
 
 .profile-header h1 {
   margin: 0;
-  color: #102a43;
+  color: #1e8664;
   font-size: 30px;
 }
 

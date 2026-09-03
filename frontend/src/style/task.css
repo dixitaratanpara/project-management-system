@@ -1,45 +1,58 @@
-/* ================================
+/* =========================================
    Tasks Page
-================================ */
+========================================= */
 
 .tasks-page {
   min-height: 100vh;
   padding: 34px 40px;
+  box-sizing: border-box;
   background: #f4f7fb;
   color: #172033;
-  box-sizing: border-box;
 }
 
-
-/* ================================
+/* =========================================
    Tasks Header
-================================ */
+========================================= */
 
 .tasks-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
   margin-bottom: 30px;
 }
 
 .tasks-label {
   margin: 0 0 6px;
   color: #19a7a8;
-  font-size: 12px;
+  font-size: 23px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-} 
+}
 
 .tasks-header h1 {
+  margin: 0;
   color: #102a43;
   font-size: 30px;
+  line-height: 1.2;
 }
 
 .tasks-subtitle {
+  margin: 7px 0 0;
   color: #718096;
   font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   Header Actions
+========================================= */
+
+.task-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .cancel-task-btn {
@@ -59,49 +72,55 @@
   background: #f0f4f8;
 }
 
-.create-task-btn {
-  padding: 11px 20px;
+.create-task-btn,
+.task-create-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
   border: none;
-  border-radius: 8px;
-  background: #19a7a8;
+  border-radius: 9px;
+  background: #0f766e;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.create-task-btn:hover {
-  background: #138889;
+.create-task-btn:hover,
+.task-create-btn:hover {
+  background: #0d9488;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
 }
 
-.create-task-btn:disabled {
+.create-task-btn:disabled,
+.task-create-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-.task-form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-
-/* ================================
+/* =========================================
    Tasks Section
-================================ */
+========================================= */
 
 .tasks-section {
   background: #ffffff;
   border: 1px solid #e5eaf0;
   border-radius: 14px;
-  min-height: 300px;
+  overflow: hidden;
   box-shadow: 0 4px 15px rgba(16, 42, 67, 0.04);
 }
 
 .tasks-section-header {
-  padding:20px 24px;
+  padding: 22px 14px;
   border-bottom: 1px solid #edf1f5;
 }
 
@@ -117,71 +136,95 @@
   font-size: 13px;
 }
 
-
-/* ================================
+/* =========================================
    Tasks List
-================================ */
+========================================= */
 
-.tasks-list {
+.tasks-list,
+.task-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 24px;
 }
 
-
-/* ================================
+/* =========================================
    Task Card
-================================ */
+========================================= */
 
 .task-card {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 18px;
-  padding: 17px 18px;
+  gap: 25px;
+  padding: 22px 24px;
   background: #ffffff;
-  border: 1px solid #e5eaf0;
-  border-radius: 12px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  border-bottom: 1px solid #edf1f5;
+  transition: background 0.2s ease;
+}
+
+.task-card:last-child {
+  border-bottom: none;
 }
 
 .task-card:hover {
-  border-color: #c9dddd;
-  box-shadow: 0 7px 18px rgba(16, 42, 67, 0.06);
-  transform: translateY(-1px);
+  background: #f8fafc;
 }
 
-
-/* ================================
+/* =========================================
    Task Information
-================================ */
+========================================= */
 
+.task-card-content,
 .task-info {
-  flex: 1;
   min-width: 0;
+  flex: 1;
 }
 
+.task-card-content h3,
 .task-info h3 {
-  margin: 0;
+  margin: 0 0 7px;
   color: #243b53;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
 }
 
-.task-info p {
-  margin: 5px 0 0;
-  color: #8492a6;
-  font-size: 12px;
-  line-height: 1.5;
+.task-info h3 {
+  margin-bottom: 0;
 }
 
+.task-card-content > p,
+.task-info p {
+  margin: 0 0 14px;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.6;
+}
 
-/* ================================
+.task-info p {
+  margin-top: 5px;
+}
+
+/* =========================================
+   Task Meta
+========================================= */
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.task-meta span {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #eef4f7;
+  color: #526579;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================================
    Task Status
-================================ */
+========================================= */
 
 .task-status {
   flex-shrink: 0;
@@ -198,134 +241,110 @@
   text-transform: capitalize;
 }
 
+/* =========================================
+   Task Actions
+========================================= */
 
-/* ================================
-   Empty State
-================================ */
-
-.task-feature-empty {
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  text-align: center;
-}
-
-.task-feature-icon {
-  width: 52px;
-  height: 52px;
-  margin-bottom: 14px;
-  border-radius: 50%;
-  background: #e6f7f7;
-  color: #138889;
+.task-card-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 19px;
-  font-weight: 700;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-.task-feature-empty h3 {
-  margin: 0;
-  color: #243b53;
-  font-size: 16px;
-}
-
-.task-feature-empty p {
-  max-width: 400px;
-  margin: 7px 0 18px;
-  color: #8492a6;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-
-/* ================================
-   Create Button
-================================ */
-
-.task-create-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 17px;
-  border: none;
-  border-radius: 9px;
-  background: #0f766e;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 13px;
+.task-view-btn,
+.task-edit-btn,
+.task-delete-btn {
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  text-decoration: none;
+  transition: 0.2s ease;
 }
 
-.task-create-btn:hover {
-  background: #0d9488;
-  transform: translateY(-1px);
-  box-shadow: 0 7px 16px rgba(15, 118, 110, 0.18);
+/* View */
+
+.task-view-btn {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
 }
 
-
-/* ================================
-   Responsive
-================================ */
-
-@media (max-width: 800px) {
-
-  .tasks-page {
-    padding: 28px 24px;
-  }
-
-  .tasks-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
+.task-view-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
 }
 
-@media (max-width: 600px) {
+/* Edit */
 
-  .tasks-page {
-    padding: 24px 16px;
-  }
-
-  .tasks-header h1 {
-    font-size: 25px;
-  }
-
-  .tasks-section-header {
-    padding: 18px;
-  }
-
-  .tasks-list {
-    padding: 18px;
-  }
-
-  .task-card {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .task-status {
-    align-self: flex-start;
-  }
-
-  .task-create-btn {
-    width: 100%;
-  }
-
+.task-edit-btn {
+  border: 1px solid #b7e3df;
+  background: #e6f7f7;
+  color: #0f766e;
 }
 
-/* ================================
+.task-edit-btn:hover {
+  background: #d5f3f0;
+}
+
+/* Delete */
+
+.task-delete-btn {
+  border: 1px solid #fecaca;
+  background: #fff5f5;
+  color: #dc2626;
+}
+
+.task-delete-btn:hover {
+  background: #fee2e2;
+}
+
+/* =========================================
+   Task Details
+========================================= */
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-detail-item {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 25px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.task-detail-item:last-child {
+  border-bottom: none;
+}
+
+.task-detail-item > span {
+  color: #718096;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.task-detail-item > strong {
+  color: #243b53;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.task-detail-item > p {
+  margin: 0;
+  color: #526579;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* =========================================
    Task Form
-================================ */
+========================================= */
 
 .task-form-card {
   background: #ffffff;
@@ -385,10 +404,9 @@
   box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
 }
 
-
-/* ================================
+/* =========================================
    Task Form Actions
-================================ */
+========================================= */
 
 .task-form-actions {
   display: flex;
@@ -417,291 +435,30 @@
   border-color: #94a3b8;
 }
 
-.task-create-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-
-/* ================================
-   Responsive
-================================ */
-
-@media (max-width: 600px) {
-
-  .task-form-card {
-    padding: 18px;
-  }
-
-  .task-form-actions {
-    flex-direction: column-reverse;
-  }
-
-  .task-form-actions button {
-    width: 100%;
-  }
-
-}
-
-/* ================================
-   Tasks Page
-================================ */
-
-.tasks-page {
-  min-height: 100vh;
-  padding: 34px 40px;
-  background: #f4f7fb;
-  color: #172033;
-  box-sizing: border-box;
-}
-
-
-/* ================================
-   Tasks Header
-================================ */
-
-.tasks-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.tasks-label {
-  margin: 0 0 6px;
-  color: #19a7a8;
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.tasks-header h1 {
-  margin: 0;
-  color: #102a43;
-  font-size: 30px;
-}
-
-.tasks-subtitle {
-  margin: 7px 0 0;
-  color: #718096;
-  font-size: 14px;
-}
-
-
-/* ================================
-   Tasks Section
-================================ */
-
-.tasks-section {
-  background: #ffffff;
-  border: 1px solid #e5eaf0;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(16, 42, 67, 0.04);
-}
-
-.tasks-section-header {
-  padding: 22px 24px;
-  border-bottom: 1px solid #edf1f5;
-}
-
-.tasks-section-header h2 {
-  margin: 0;
-  color: #102a43;
-  font-size: 18px;
-}
-
-.tasks-section-header p {
-  margin: 5px 0 0;
-  color: #8492a6;
-  font-size: 13px;
-}
-
-
-/* ================================
-   Create Task Button
-================================ */
-
-.task-create-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 17px;
-  border: none;
-  border-radius: 9px;
-  background: #0f766e;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.task-create-btn:hover {
-  background: #0d9488;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
-}
-
-
-/* ================================
-   Task List
-================================ */
-
-.task-list {
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* ================================
-   Task Card
-================================ */
-
-.task-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
-  padding: 22px 24px;
-  border-bottom: 1px solid #edf1f5;
-  transition: background 0.2s ease;
-}
-
-.task-card:last-child {
-  border-bottom: none;
-}
-
-.task-card:hover {
-  background: #f8fafc;
-}
-
-.task-card-content {
-  min-width: 0;
-  flex: 1;
-}
-
-.task-card-content h3 {
-  margin: 0 0 7px;
-  color: #243b53;
-  font-size: 16px;
-}
-
-.task-card-content > p {
-  margin: 0 0 14px;
-  color: #718096;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-
-/* ================================
-   Task Meta
-================================ */
-
-.task-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.task-meta span {
-  padding: 5px 9px;
-  border-radius: 6px;
-  background: #eef4f7;
-  color: #526579;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-
-/* ================================
-   Task Actions
-================================ */
-
-.task-card-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.task-view-btn,
-.task-edit-btn,
-.task-delete-btn {
-  padding: 8px 12px;
-  border-radius: 7px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: 0.2s ease;
-}
-
-
-/* View */
-
-.task-view-btn {
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #475569;
-}
-
-.task-view-btn:hover {
-  background: #f8fafc;
-  border-color: #94a3b8;
-}
-
-
-/* Edit */
-
-.task-edit-btn {
-  border: 1px solid #b7e3df;
-  background: #e6f7f7;
-  color: #0f766e;
-}
-
-.task-edit-btn:hover {
-  background: #d5f3f0;
-}
-
-
-/* Delete */
-
-.task-delete-btn {
-  border: 1px solid #fecaca;
-  background: #fff5f5;
-  color: #dc2626;
-}
-
-.task-delete-btn:hover {
-  background: #fee2e2;
-}
-
-
-/* ================================
+/* =========================================
    Empty State
-================================ */
+========================================= */
 
-.task-empty-state {
+.task-empty-state,
+.task-feature-empty {
   min-height: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 30px;
   text-align: center;
-  padding: 25px;
 }
 
-.task-empty-icon {
+.task-feature-empty {
+  min-height: 250px;
+}
+
+.task-empty-icon,
+.task-feature-icon {
   width: 52px;
   height: 52px;
-  margin-bottom: 13px;
+  margin-bottom: 14px;
   border-radius: 50%;
   background: #e6f7f7;
   color: #138889;
@@ -712,25 +469,31 @@
   font-weight: 700;
 }
 
-.task-empty-state h3 {
+.task-empty-state h3,
+.task-feature-empty h3 {
   margin: 0;
   color: #243b53;
   font-size: 16px;
 }
 
-.task-empty-state p {
+.task-empty-state p,
+.task-feature-empty p {
   margin: 7px 0 0;
   color: #8492a6;
   font-size: 13px;
+  line-height: 1.6;
 }
 
+.task-feature-empty p {
+  max-width: 400px;
+  margin-bottom: 18px;
+}
 
-/* ================================
-   Responsive
-================================ */
+/* =========================================
+   Responsive - Tablet
+========================================= */
 
 @media (max-width: 800px) {
-
   .tasks-page {
     padding: 28px 24px;
   }
@@ -749,11 +512,21 @@
     width: 100%;
   }
 
+  .task-header-actions {
+    width: 100%;
+  }
+
+  .task-header-actions a {
+    flex: 1;
+    text-align: center;
+  }
 }
 
+/* =========================================
+   Responsive - Mobile
+========================================= */
 
 @media (max-width: 600px) {
-
   .tasks-page {
     padding: 24px 16px;
   }
@@ -766,8 +539,13 @@
     padding: 18px;
   }
 
+  .tasks-list {
+    padding: 18px;
+  }
+
   .task-card {
     padding: 18px;
+    gap: 12px;
   }
 
   .task-card-actions {
@@ -781,95 +559,22 @@
     text-align: center;
   }
 
-  .task-create-btn {
+  .task-create-btn,
+  .create-task-btn {
     width: 100%;
   }
 
-}
+  .task-form-card {
+    padding: 18px;
+  }
 
-/* ================================
-   Task Header Actions
-================================ */
+  .task-form-actions {
+    flex-direction: column-reverse;
+  }
 
-.task-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-/* ================================
-   Task Details
-================================ */
-
-.task-details {
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* ================================
-   Task Detail Item
-================================ */
-
-.task-detail-item {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 25px;
-  padding: 18px 24px;
-  border-bottom: 1px solid #edf1f5;
-}
-
-.task-detail-item:last-child {
-  border-bottom: none;
-}
-
-.task-detail-item > span {
-  color: #718096;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.task-detail-item > strong {
-  color: #243b53;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.task-detail-item > p {
-  margin: 0;
-  color: #526579;
-  font-size: 14px;
-  line-height: 1.7;
-  white-space: pre-wrap;
-}
-
-
-/* ================================
-   Responsive
-================================ */
-
-@media (max-width: 700px) {
-
-  .task-header-actions {
+  .task-form-actions button {
     width: 100%;
   }
-
-  .task-header-actions a {
-    flex: 1;
-    text-align: center;
-  }
-
-  .task-detail-item {
-    grid-template-columns: 1fr;
-    gap: 7px;
-    padding: 16px 18px;
-  }
-
-}
-
-
-@media (max-width: 500px) {
 
   .task-header-actions {
     flex-direction: column;
@@ -879,5 +584,20 @@
     width: 100%;
     box-sizing: border-box;
   }
+}
 
+/* =========================================
+   Responsive - Small Mobile
+========================================= */
+
+@media (max-width: 500px) {
+  .task-card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .task-detail-item {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 16px 18px;
+  }
 }

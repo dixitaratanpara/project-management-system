@@ -14,42 +14,6 @@ function Projects() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // const handleDelete = async (id) => {
-
-    //     const confirmDelete = window.confirm(
-    //         "Are you sure you want to delete this project?"
-    //     );
-
-    //     if (!confirmDelete) {
-    //         return;
-    //     }
-
-    //     try {
-    //         const response = await api.delete(`/projects/${id}`);
-
-    //         console.log(response.data);
-
-    //         toast.success(
-    //             response.data.message ||
-    //             "Project deleted successfully"
-    //         );
-
-    //         setProjects((currentProjects) =>
-    //             currentProjects.filter(
-    //                 (project) => project._id !== id
-    //             )
-    //         );
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-
-    //         toast.error(
-    //             error.response?.data?.message ||
-    //             "Failed to delete project"
-    //         );
-    //     }
-    // };
-
     //get all projects
     const fetchProjects = async () => {
         try {

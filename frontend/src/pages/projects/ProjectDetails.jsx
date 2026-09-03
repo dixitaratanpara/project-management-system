@@ -39,27 +39,30 @@ function ProjectDetails() {
 
   //delete projects
   const handleDelete = async () => {
+
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this project?"
     );
+
     if (!confirmDelete) {
       return;
     }
+
     try {
       await api.delete(`/projects/${id}`);
 
       toast.success("Project deleted successfully");
 
       navigate("/projects");
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
 
       toast.error(error.response?.data?.message || "Failed to delete project");
     }
-
   };
-  if (loading) {
 
+  if (loading) {
     return (
       <div className="projects-page">
 

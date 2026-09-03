@@ -50,10 +50,7 @@ function ResetPassword() {
         }
       );
 
-      toast.success(
-        response.data.message ||
-        "Password reset successfully"
-      );
+      toast.success(response.data.message ||"Password reset successfully");
 
       navigate("/login");
 
@@ -61,10 +58,7 @@ function ResetPassword() {
 
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to reset password"
-      );
+      toast.error(error.response?.data?.message ||"Failed to reset password");
 
     } finally {
 

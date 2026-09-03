@@ -8,6 +8,8 @@ function CreateTask() {
 
   const navigate = useNavigate();
 
+   const user = JSON.parse(localStorage.getItem("user"));
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -42,10 +44,7 @@ function CreateTask() {
 
         console.log(error);
 
-        toast.error(
-          error.response?.data?.message ||
-          "Failed to load projects"
-        );
+        toast.error(error.response?.data?.message ||"Failed to load projects");
 
       }
 
@@ -337,7 +336,6 @@ function CreateTask() {
                 Cancel
               </button>
               {(user?.role === "admin" || user?.role === "manager") && (
-
                 <button
                   type="submit"
                   className="create-task-btn"

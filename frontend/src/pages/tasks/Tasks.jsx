@@ -44,7 +44,7 @@ function Tasks() {
     fetchTasks();
   }, []);
 
-  // delete task
+  //Delete task
   const handleDelete = async (id) => {
 
     const confirmDelete = window.confirm(

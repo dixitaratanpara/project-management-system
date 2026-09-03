@@ -4,10 +4,13 @@
 
 .dashboard-layout {
   min-height: 100vh;
+
   display: flex;
+
   background: #f4f7fb;
   color: #172033;
 }
+
 
 /* ================================
    Sidebar
@@ -16,45 +19,61 @@
 .dashboard-sidebar {
   width: 250px;
   min-height: 100vh;
-  background: #102a43;
-  color: #ffffff;
+
   display: flex;
   flex-direction: column;
+
   padding: 24px 18px;
+
   box-sizing: border-box;
+
+  background: #102a43;
+  color: #ffffff;
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
+
   gap: 12px;
+
   padding: 8px 10px 28px;
 }
 
 .sidebar-logo {
   width: 42px;
   height: 42px;
-  border-radius: 12px;
-  background: #19a7a8;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+
+  border-radius: 12px;
+
+  background: #19a7a8;
+  color: #ffffff;
+
   font-size: 15px;
+  font-weight: 700;
 }
 
 .sidebar-brand h2 {
   margin: 0;
+
   font-size: 18px;
   font-weight: 700;
 }
 
 .sidebar-brand span {
   display: block;
+
   margin-top: 3px;
-  font-size: 11px;
+
   color: #a9bfd4;
+
+  font-size: 11px;
 }
+
 
 /* ================================
    Sidebar Navigation
@@ -63,24 +82,34 @@
 .sidebar-nav {
   display: flex;
   flex-direction: column;
+
   gap: 7px;
 }
 
 .sidebar-nav a {
   display: flex;
   align-items: center;
+
   gap: 12px;
+
   padding: 12px 13px;
+
   border-radius: 9px;
+
   color: #c8d6e5;
+
   text-decoration: none;
+
   font-size: 14px;
+
   transition: 0.2s ease;
 }
 
 .sidebar-nav a span {
   width: 20px;
+
   text-align: center;
+
   font-size: 16px;
 }
 
@@ -94,24 +123,39 @@
   color: #ffffff;
 }
 
+
+/* ================================
+   Sidebar Bottom
+================================ */
+
 .sidebar-bottom {
   margin-top: auto;
+
   padding-top: 20px;
+
   border-top: 1px solid #21415d;
 }
 
 .sidebar-bottom button {
   width: 100%;
-  border: none;
-  background: transparent;
-  color: #c8d6e5;
-  padding: 12px 13px;
-  border-radius: 9px;
+
   display: flex;
   align-items: center;
+
   gap: 12px;
+
+  padding: 12px 13px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #c8d6e5;
+
   font-size: 14px;
+
   cursor: pointer;
+
   text-align: left;
 }
 
@@ -120,15 +164,19 @@
   color: #ffffff;
 }
 
+
 /* ================================
    Main Content
 ================================ */
 
 .dashboard-main {
   flex: 1;
-  padding: 34px 40px;
+
   min-width: 0;
+
+  padding: 34px 40px;
 }
+
 
 /* ================================
    Header
@@ -136,67 +184,97 @@
 
 .dashboard-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
   gap: 25px;
+
   margin-bottom: 30px;
 }
 
 .dashboard-label {
   margin: 0 0 6px;
+
   color: #19a7a8;
+
   font-size: 12px;
   font-weight: 700;
+
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .dashboard-header h1 {
   margin: 0;
-  font-size: 30px;
+
   color: #102a43;
+
+  font-size: 30px;
 }
 
 .dashboard-subtitle {
   margin: 7px 0 0;
+
   color: #718096;
+
   font-size: 14px;
 }
+
+
+/* ================================
+   Dashboard User
+================================ */
 
 .dashboard-user {
   display: flex;
   align-items: center;
+
   gap: 11px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+
   padding: 8px 14px 8px 8px;
+
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
+
+  background: #ffffff;
+
+  text-decoration: none;
 }
 
 .user-avatar {
   width: 38px;
   height: 38px;
-  border-radius: 50%;
-  background: #19a7a8;
-  color: #ffffff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 50%;
+
+  background: #19a7a8;
+  color: #ffffff;
+
   font-weight: 700;
 }
 
 .dashboard-user strong {
   display: block;
-  font-size: 13px;
+
   color: #172033;
+
+  font-size: 13px;
 }
 
 .dashboard-user span {
   display: block;
+
   margin-top: 2px;
+
   color: #8a98a9;
+
   font-size: 11px;
 }
+
 
 /* ================================
    Statistics
@@ -204,120 +282,270 @@
 
 .dashboard-stats {
   display: grid;
+
   grid-template-columns: repeat(4, 1fr);
+
   gap: 18px;
+
   margin-bottom: 28px;
 }
 
 .stat-card {
-  background: #ffffff;
-  border: 1px solid #e5eaf0;
-  border-radius: 14px;
-  padding: 20px;
   display: flex;
   align-items: center;
+
   gap: 15px;
+
+  padding: 20px;
+
+  border: 1px solid #e5eaf0;
+  border-radius: 14px;
+
+  background: #ffffff;
+
   box-shadow: 0 4px 15px rgba(16, 42, 67, 0.04);
 }
 
 .stat-icon {
   width: 44px;
   height: 44px;
-  border-radius: 11px;
-  background: #e6f7f7;
-  color: #138889;
+
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 11px;
+
+  background: #e6f7f7;
+  color: #138889;
+
   font-weight: 700;
-  flex-shrink: 0;
 }
 
 .stat-card p {
   margin: 0 0 5px;
+
   color: #718096;
+
   font-size: 12px;
 }
 
 .stat-card h2 {
   margin: 0;
+
   color: #102a43;
+
   font-size: 24px;
 }
+
 
 /* ================================
    Dashboard Section
 ================================ */
 
 .dashboard-section {
-  background: #ffffff;
+  min-height: 300px;
+
+  margin-top: 30px;
+  padding: 28px;
+
+  box-sizing: border-box;
+
   border: 1px solid #e5eaf0;
   border-radius: 14px;
-  min-height: 300px;
+
+  background: #ffffff;
+
   box-shadow: 0 4px 15px rgba(16, 42, 67, 0.04);
 }
 
+
+/* ================================
+   Section Header
+================================ */
+
 .section-header {
-  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+
+  padding-bottom: 18px;
+
   border-bottom: 1px solid #edf1f5;
 }
 
 .section-header h2 {
   margin: 0;
+
   color: #102a43;
+
   font-size: 18px;
+  font-weight: 700;
 }
 
 .section-header p {
   margin: 5px 0 0;
+
   color: #8492a6;
+
   font-size: 13px;
 }
 
+
 /* ================================
-   Empty State
+   Recent Activity List
+================================ */
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 16px 18px;
+
+  border: 1px solid #e5eaf0;
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  transition: 0.2s ease;
+}
+
+.activity-item:hover {
+  transform: translateY(-1px);
+
+  border-color: #b8dede;
+
+  box-shadow: 0 4px 12px rgba(16, 42, 67, 0.05);
+}
+
+.activity-icon {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #e6f7f7;
+  color: #138889;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-content strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #243b53;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.activity-content p {
+  margin: 0;
+
+  color: #6b7c8f;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+.activity-date {
+  color: #94a3b8;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+
+/* ================================
+   Empty / Loading State
 ================================ */
 
 .empty-state {
-  min-height: 230px;
+  min-height: 220px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  padding: 30px 20px;
+
+  box-sizing: border-box;
+
   text-align: center;
-  padding: 25px;
 }
 
 .empty-icon {
   width: 52px;
   height: 52px;
-  border-radius: 50%;
-  background: #e6f7f7;
-  color: #138889;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  margin-bottom: 16px;
+
+  border-radius: 50%;
+
+  background: #e6f7f7;
+  color: #138889;
+
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 13px;
 }
 
 .empty-state h3 {
-  margin: 0;
+  margin: 0 0 8px;
+
   color: #243b53;
-  font-size: 16px;
+
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .empty-state p {
-  max-width: 400px;
-  margin: 7px 0 0;
+  max-width: 500px;
+
+  margin: 0;
+
   color: #8492a6;
+
   font-size: 13px;
+
   line-height: 1.6;
 }
 
+
 /* ================================
-   Responsive
+   Responsive - Tablet
 ================================ */
 
 @media (max-width: 1100px) {
@@ -325,6 +553,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 
 @media (max-width: 800px) {
   .dashboard-sidebar {
@@ -337,9 +566,40 @@
 
   .dashboard-header {
     align-items: flex-start;
+
     flex-direction: column;
   }
 }
+
+
+/* ================================
+   Responsive - Mobile
+================================ */
+
+@media (max-width: 768px) {
+  .dashboard-section {
+    padding: 20px;
+  }
+
+  .section-header {
+    margin-bottom: 18px;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  .activity-item {
+    align-items: flex-start;
+
+    padding: 14px;
+  }
+
+  .activity-date {
+    font-size: 12px;
+  }
+}
+
 
 @media (max-width: 600px) {
   .dashboard-layout {
@@ -349,6 +609,7 @@
   .dashboard-sidebar {
     width: 100%;
     min-height: auto;
+
     padding: 15px;
   }
 
@@ -358,6 +619,7 @@
 
   .sidebar-nav {
     flex-direction: row;
+
     overflow-x: auto;
   }
 
@@ -383,261 +645,9 @@
 
   .dashboard-user {
     width: 100%;
+
     box-sizing: border-box;
   }
-}
-
-
-/* ============================= */
-/* RECENT ACTIVITY */
-/* ============================= */
-
-.dashboard-section {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 28px;
-  margin-top: 30px;
-}
-
-
-/* Section Header */
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.section-header h2 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: #1f2937;
-}
-
-.section-header p {
-  margin: 6px 0 0;
-  font-size: 14px;
-  color: #6b7280;
-}
-
-
-/* ============================= */
-/* EMPTY / LOADING STATE */
-/* ============================= */
-
-.empty-state {
-  min-height: 220px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  background: #f9fafb;
-
-  border: 1px dashed #d1d5db;
-
-  border-radius: 14px;
-
-  padding: 30px 20px;
-
-  box-sizing: border-box;
-}
-
-
-/* Empty Icon */
-
-.empty-icon {
-  width: 52px;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #eef2ff;
-
-  color: #4f46e5;
-
-  font-size: 22px;
-  font-weight: 700;
-
-  margin-bottom: 16px;
-}
-
-
-/* Empty Heading */
-
-.empty-state h3 {
-  margin: 0 0 8px;
-
-  font-size: 18px;
-
-  font-weight: 600;
-
-  color: #374151;
-}
-
-
-/* Empty Text */
-
-.empty-state p {
-  margin: 0;
-
-  max-width: 500px;
-
-  font-size: 14px;
-
-  line-height: 1.6;
-
-  color: #6b7280;
-}
-
-
-/* ============================= */
-/* ACTIVITY LIST */
-/* ============================= */
-
-.activity-list {
-  display: flex;
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-
-/* Activity Item */
-
-.activity-item {
-  display: flex;
-  align-items: center;
-
-  gap: 16px;
-
-  padding: 16px 18px;
-
-  background: #f9fafb;
-
-  border: 1px solid #e5e7eb;
-
-  border-radius: 12px;
-
-  transition: 0.2s ease;
-}
-
-
-.activity-item:hover {
-  transform: translateY(-1px);
-
-  border-color: #c7d2fe;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-
-/* Activity Icon */
-
-.activity-icon {
-  width: 42px;
-  height: 42px;
-
-  min-width: 42px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 10px;
-
-  background: #eef2ff;
-
-  color: #4f46e5;
-
-  font-size: 17px;
-
-  font-weight: 700;
-}
-
-
-/* Activity Content */
-
-.activity-content {
-  flex: 1;
-}
-
-.activity-content strong {
-  display: block;
-
-  margin-bottom: 4px;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  color: #1f2937;
-}
-
-.activity-content p {
-  margin: 0;
-
-  font-size: 14px;
-
-  color: #6b7280;
-
-  line-height: 1.4;
-}
-
-
-/* Activity Date */
-
-.activity-date {
-  font-size: 13px;
-
-  color: #9ca3af;
-
-  white-space: nowrap;
-}
-
-
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
-
-@media (max-width: 768px) {
-
-  .dashboard-section {
-    padding: 20px;
-  }
-
-  .section-header {
-    margin-bottom: 18px;
-  }
-
-  .section-header h2 {
-    font-size: 20px;
-  }
-
-  .activity-item {
-    align-items: flex-start;
-
-    padding: 14px;
-  }
-
-  .activity-date {
-    font-size: 12px;
-  }
-
-}
-
-
-@media (max-width: 576px) {
 
   .dashboard-section {
     padding: 16px;
@@ -667,5 +677,4 @@
   .activity-date {
     display: none;
   }
-
 }

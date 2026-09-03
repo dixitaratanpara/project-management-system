@@ -174,13 +174,6 @@ export const addMember = async (req, res) => {
     try {
         const { userId } = req.body;
 
-        // if(!userId){
-        //       return res.status(404).json({
-        //         success: false,
-        //         message: "User ID not found",
-        //     });
-        // }
-
         const project = await Project.findById(req.params.id);
 
         if (!project) {

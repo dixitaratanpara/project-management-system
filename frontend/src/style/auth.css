@@ -1,16 +1,26 @@
+/* ================================
+   Auth Page
+================================ */
+
 .auth-page {
   min-height: 70vh;
   padding: 30px;
-  background: #eef4f3;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  background: #eef4f3;
 }
+
+
+/* ================================
+   Auth Container
+================================ */
 
 .auth-container {
   width: 100%;
-  max-width:900px;
-  min-height:150px;
+  max-width: 900px;
+  min-height: 150px;
   display: grid;
   grid-template-columns: 45% 55%;
   background: #ffffff;
@@ -19,9 +29,10 @@
   box-shadow: 0 25px 60px rgba(11, 31, 51, 0.14);
 }
 
-/* =========================
-   LEFT BRANDING SECTION
-========================= */
+
+/* ================================
+   Left Branding Section
+================================ */
 
 .auth-brand {
   position: relative;
@@ -61,23 +72,9 @@
   max-width: 390px;
 }
 
-/* .brand-logo {
-  width: 52px;
-  height: 52px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  background: #14b8a6;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 1px;
-} */
-
 .brand-content h1 {
   margin: 0 0 18px;
+  color: #ffffff;
   font-size: 30px;
   line-height: 1.2;
   font-weight: 700;
@@ -90,6 +87,11 @@
   font-size: 15px;
   line-height: 1.8;
 }
+
+
+/* ================================
+   Brand Features
+================================ */
 
 .brand-features {
   display: flex;
@@ -123,9 +125,10 @@
   font-size: 14px;
 }
 
-/* =========================
-   RIGHT FORM SECTION
-========================= */
+
+/* ================================
+   Right Form Section
+================================ */
 
 .auth-form-section {
   display: flex;
@@ -140,6 +143,11 @@
   max-width: 390px;
 }
 
+
+/* ================================
+   Auth Heading
+================================ */
+
 .auth-heading {
   margin-bottom: 32px;
 }
@@ -147,7 +155,7 @@
 .auth-heading h2 {
   margin: 0 0 10px;
   color: #0b1f33;
-  font-size:30px;
+  font-size: 30px;
   line-height: 1.2;
   font-weight: 700;
 }
@@ -159,9 +167,10 @@
   line-height: 1.6;
 }
 
-/* =========================
-   FORM
-========================= */
+
+/* ================================
+   Form
+================================ */
 
 .form-group {
   margin-bottom: 20px;
@@ -175,15 +184,22 @@
   font-weight: 600;
 }
 
+
+/* ================================
+   Input
+================================ */
+
 .form-group input {
   width: 100%;
   padding: 13px 14px;
+  box-sizing: border-box;
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   outline: none;
   background: #ffffff;
   color: #0f172a;
   font-size: 13px;
+
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -199,8 +215,53 @@
 
 .form-group input:focus {
   border-color: #14b8a6;
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+
+  box-shadow:
+    0 0 0 3px rgba(20, 184, 166, 0.12);
 }
+
+
+/* ================================
+   Role Select
+================================ */
+
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #243b53;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group select:hover {
+  border-color: #19a7a8;
+}
+
+.form-group select:focus {
+  border-color: #19a7a8;
+
+  box-shadow:
+    0 0 0 3px rgba(25, 167, 168, 0.12);
+}
+
+.form-group select option {
+  background: #ffffff;
+  color: #243b53;
+}
+
+
+/* ================================
+   Auth Button
+================================ */
 
 .auth-card button {
   width: 100%;
@@ -213,6 +274,7 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+
   transition:
     background 0.2s ease,
     transform 0.2s ease,
@@ -222,16 +284,18 @@
 .auth-card button:hover {
   background: #0d9488;
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
+  box-shadow:
+    0 8px 18px rgba(15, 118, 110, 0.2);
 }
 
 .auth-card button:active {
   transform: translateY(0);
 }
 
-/* =========================
-   FOOTER
-========================= */
+
+/* ================================
+   Footer
+================================ */
 
 .auth-footer {
   margin-top: 24px;
@@ -255,9 +319,10 @@
   color: #0d9488;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
+/* ================================
+   Responsive - Tablet
+================================ */
 
 @media (max-width: 900px) {
   .auth-container {
@@ -288,6 +353,11 @@
   }
 }
 
+
+/* ================================
+   Responsive - Mobile
+================================ */
+
 @media (max-width: 600px) {
   .auth-page {
     padding: 15px;
@@ -300,12 +370,6 @@
   .auth-brand {
     min-height: auto;
     padding: 35px 25px;
-  }
-
-  .brand-logo {
-    width: 46px;
-    height: 46px;
-    margin-bottom: 20px;
   }
 
   .brand-content h1 {
@@ -328,34 +392,4 @@
   .auth-heading h2 {
     font-size: 26px;
   }
-}
-
-/* Role Select */
-
-.form-group select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d7dee8;
-  border-radius: 9px;
-  background: #ffffff;
-  color: #243b53;
-  font-size: 14px;
-  outline: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: 0.2s ease;
-}
-
-.form-group select:focus {
-  border-color: #19a7a8;
-  box-shadow: 0 0 0 3px rgba(25, 167, 168, 0.12);
-}
-
-.form-group select:hover {
-  border-color: #19a7a8;
-}
-
-.form-group select option {
-  background: #ffffff;
-  color: #243b53;
 }

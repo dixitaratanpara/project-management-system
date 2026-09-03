@@ -23,10 +23,7 @@ function Profile() {
 
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to load profile"
-      );
+      toast.error(error.response?.data?.message ||"Failed to load profile");
 
     } finally {
 

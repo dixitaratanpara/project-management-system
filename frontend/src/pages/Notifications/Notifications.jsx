@@ -52,14 +52,9 @@ function Notifications() {
 
     }
     catch (error) {
-
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to mark notification as read"
-      );
-
+      toast.error(error.response?.data?.message ||"Failed to mark notification as read");
     }
 
   };
@@ -79,11 +74,7 @@ function Notifications() {
 
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to mark notifications as read"
-      );
-
+      toast.error(error.response?.data?.message ||"Failed to mark notifications as read");
     }
 
   };

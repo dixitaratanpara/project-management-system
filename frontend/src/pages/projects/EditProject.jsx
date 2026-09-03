@@ -38,16 +38,13 @@ function EditProject() {
       catch (error) {
         console.log(error);
 
-        toast.error(
-          error.response?.data?.message ||
-          "Failed to load project"
-        );
+        toast.error(error.response?.data?.message ||"Failed to load project");
       }
       finally {
         setLoading(false);
       }
     };
-
+    
     fetchProject();
   }, [id]);
 
@@ -64,27 +61,18 @@ function EditProject() {
     setSaving(true);
 
     try {
-      const response = await api.put(
-        `/projects/${id}`,
-        formData
-      );
+      const response = await api.put(`/projects/${id}`,formData);
 
       console.log(response.data);
 
-      toast.success(
-        response.data.message ||
-        "Project updated successfully!"
-      );
+      toast.success(response.data.message ||"Project updated successfully!");
 
       navigate(`/projects/${id}`);
     }
     catch (error) {
       console.log(error);
 
-      toast.error(
-        error.response?.data?.message ||
-        "Failed to update project"
-      );
+      toast.error(error.response?.data?.message ||"Failed to update project");
     }
     finally {
       setSaving(false);
