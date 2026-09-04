@@ -68,12 +68,11 @@ A full-stack Project Management System built using the **MERN Stack**. This appl
 - Manage project work
 
 #### 👩‍💻 Member
-- View assigned projects
+- View projects
 - View project tasks
 - Work on assigned tasks
 - Update task-related work
 - Add and manage comments
-
 ---
 
 ## 🛠 Tech Stack
@@ -122,21 +121,38 @@ project-management-system/
 │   └── package.json
 │
 └── README.md
+```
 
-⚙ Installation
-Backend
+---
+
+## ⚙ Installation
+
+### Backend
+
+```bash
 cd backend
 npm install
 npm run dev
-Frontend
+```
+
+---
+
+### Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-🔑 Environment Variables
+---
 
-Create a .env file inside the backend folder.
 
+## 🔑 Environment Variables
+
+Create a `.env` file inside the backend folder.
+
+```env
 PORT=5000
 
 MONGO_URI=YOUR_MONGODB_URI
@@ -146,8 +162,15 @@ JWT_SECRET=YOUR_SECRET_KEY
 RESEND_API_KEY=YOUR_RESEND_API_KEY
 
 CLIENT_URL=YOUR_FRONTEND_URL
-📌 API Endpoints
-Authentication
+
+
+```
+
+---
+## 📌 API Endpoints
+
+### Authentication
+```
 POST    /api/auth/register
 
 POST    /api/auth/login
@@ -157,7 +180,10 @@ GET     /api/auth/me
 POST    /api/auth/forgot-password
 
 POST    /api/auth/reset-password/:token
-Projects
+```
+---
+### Projects
+```
 POST    /api/projects
 
 GET     /api/projects
@@ -173,7 +199,10 @@ POST    /api/projects/:id/members
 GET     /api/projects/:id/members
 
 DELETE  /api/projects/:id/members/:userId
-Tasks
+```
+---
+###Tasks
+```
 POST    /api/tasks
 
 GET     /api/tasks
@@ -183,7 +212,10 @@ GET     /api/tasks/:id
 PUT     /api/tasks/:id
 
 DELETE  /api/tasks/:id
-Comments
+```
+---
+###Comments
+```
 POST    /api/comments
 
 GET     /api/comments/:taskId
@@ -191,53 +223,52 @@ GET     /api/comments/:taskId
 PUT     /api/comments/:id
 
 DELETE  /api/comments/:id
-Notifications
+```
+---
+
+###Notifications
+```
 GET     /api/notifications
 
 PUT     /api/notifications/:id/read
 
 DELETE  /api/notifications/:id
-🔮 Future Improvements
-File/Image Attachments
-Real-time Notifications
-Project Progress Tracking
-Advanced Task Filtering
-Activity Logs
-Team Chat
-Dark Mode
-📚 What I Learned
-MERN Stack Development
-REST API Development
-JWT Authentication
-Role-Based Authorization
-MongoDB & Mongoose
-Password Reset using Email
-CRUD Operations
-Project & Task Management
-React Routing
-Axios API Integration
-Protected Routes
-Role-Based UI Permissions
-Git & GitHub Workflow
-Frontend & Backend Integration
-👩‍💻 Author
+```
 
-Dixita Ratanpara
+## 🔮 Future Improvements
 
-📄 License
+-File/Image Attachments
+-Real-time Notifications
+-Project Progress Tracking
+-Advanced Task Filtering
+-Activity Logs
+-Team Chat
+-Dark Mode
+
+---
+
+##📚 What I Learned
+-MERN Stack Development
+-REST API Development
+-JWT Authentication
+-Role-Based Authorization
+-MongoDB & Mongoose
+-Password Reset using Email
+-CRUD Operations
+-Project & Task Management
+-React Routing
+-Axios API Integration
+-Protected Routes
+-Role-Based UI Permissions
+-Git & GitHub Workflow
+-Frontend & Backend Integration
+
+---
+
+##👩‍💻 Author
+
+**Dixita Ratanpara**
+
+##📄 License
 
 This project is created for learning and portfolio purposes.
-
-
-### ⚠️ One important thing before we add it
-
-I intentionally kept this README **simple like your Bug Tracker README**—no screenshots, no badges, no unnecessary documentation.
-
-But before committing it, we should verify the **exact API endpoint paths** for Comments and Notifications against your actual backend routes. I don't want to put even one incorrect endpoint in your GitHub README.
-
-So **don't create/commit the README yet**.
-
-Next, send me your:
-
-```text
-backend/src/routes/
