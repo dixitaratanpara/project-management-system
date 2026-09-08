@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
@@ -8,13 +8,13 @@ function Login() {
 
     const navigate = useNavigate();
 
-    //     useEffect(() => {
-    //     const token = localStorage.getItem("token");
+        useEffect(() => {
+        const token = localStorage.getItem("token");
 
-    //     if (token) {
-    //       navigate("/dashboard");
-    //     }
-    //   }, [navigate]);
+        if (token) {
+          navigate("/dashboard");
+        }
+      }, [navigate]);
 
     const [formData, setFormData] = useState({
         email: "",

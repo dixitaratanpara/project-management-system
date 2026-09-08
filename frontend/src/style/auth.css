@@ -3,7 +3,7 @@
 ================================ */
 
 .auth-page {
-  min-height: 70vh;
+  min-height: 100vh;
   padding: 30px;
   display: flex;
   align-items: center;
