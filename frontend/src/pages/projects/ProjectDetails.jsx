@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import "../../style/projects.css";
@@ -10,6 +10,8 @@ function ProjectDetails() {
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
+  
   const [project, setProject] = useState(null);
 
   const [loading, setLoading] = useState(true);
